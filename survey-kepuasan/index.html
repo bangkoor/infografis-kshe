@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis Kepuasan Pemangku Kepentingan KSHE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 250px;
+            width: 100%;
+        }
+        .word-cloud-item {
+            display: inline-block;
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-12 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-bold mb-4">Laporan Capaian Kepuasan Pemangku Kepentingan KSHE</h1>
+            <p class="text-lg opacity-90">Rangkuman tingkat kepuasan terhadap layanan akademik, manajemen, fasilitas, dan kualitas lulusan program studi Konservasi Sumberdaya Hutan dan Ekowisata (KSHE).</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 -mt-8 pb-12">
+        
+        <!-- Statistics Section -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- Kepuasan Dosen -->
+            <div class="card">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="users" class="text-blue-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Kepuasan Dosen</h2>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">91% Dosen menyatakan puas terhadap layanan manajemen program studi.</p>
+                <div class="chart-container">
+                    <canvas id="dosenChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Kepuasan Tendik -->
+            <div class="card">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="briefcase" class="text-blue-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Kepuasan Tendik</h2>
+                </div>
+                <p class="text-sm text-slate-600 mb-4">Nilai rata-rata 3,25 / 4,00 (Kategori Sangat Baik).</p>
+                <div class="chart-container">
+                    <canvas id="tendikChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic & Employer Section -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <!-- Layanan Akademik -->
+            <div class="card bg-blue-50 border-l-4 border-blue-500">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="graduation-cap" class="text-blue-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Layanan Akademik & Kemahasiswaan</h2>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 mt-1 w-5 h-5"></i>
+                        <span><strong>Kualitas Pembelajaran:</strong> Dinilai Baik hingga Sangat Baik.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-lucide="check-circle-2" class="text-green-500 mr-2 mt-1 w-5 h-5"></i>
+                        <span><strong>Bimbingan TA:</strong> 85% Dosen menilai prosedur sangat jelas & efektif.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-lucide="info" class="text-blue-500 mr-2 mt-1 w-5 h-5"></i>
+                        <span><strong>Dukungan MBKM:</strong> Respon positif, namun butuh kemudahan konversi SKS.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Kualitas Lulusan -->
+            <div class="card bg-green-50 border-l-4 border-green-500">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="award" class="text-green-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Kualitas Lulusan (Mata Pengguna)</h2>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-sm font-semibold text-green-700 uppercase tracking-wider">Keunggulan Utama:</span>
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Etika & Integritas</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Kerjasama Tim</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Komunikasi</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-sm font-semibold text-amber-700 uppercase tracking-wider">Catatan Perbaikan:</span>
+                        <p class="text-sm mt-1 text-slate-700 italic">"Peningkatan Bahasa Inggris & Sertifikasi Keahlian (GIS, AMDAL, HCV/HCS)."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Partners & Improvement -->
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+            <!-- Loyalitas Mitra -->
+            <div class="card col-span-1 flex flex-col items-center justify-center text-center py-8">
+                <i data-lucide="thumbs-up" class="w-16 h-16 text-blue-600 mb-4 animate-bounce"></i>
+                <h2 class="text-xl font-bold mb-2">Loyalitas Mitra</h2>
+                <p class="text-3xl font-bold text-blue-700 mb-2">100%</p>
+                <p class="text-sm text-slate-600 italic">"Sangat Bersedia" melanjutkan kerjasama.</p>
+                <p class="text-xs mt-4 text-slate-500">Aspek Unggulan: Profesionalisme Tim & Manfaat Nyata.</p>
+            </div>
+
+            <!-- Daftar Prioritas -->
+            <div class="card col-span-1">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="list-checks" class="text-red-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Daftar Prioritas</h2>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center p-2 bg-slate-50 rounded">
+                        <span class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
+                        <span class="text-sm">Fasilitas Fisik (Toilet, AC, Lab)</span>
+                    </div>
+                    <div class="flex items-center p-2 bg-slate-50 rounded">
+                        <span class="w-6 h-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
+                        <span class="text-sm">Infrastruktur Digital (Wi-Fi)</span>
+                    </div>
+                    <div class="flex items-center p-2 bg-slate-50 rounded">
+                        <span class="w-6 h-6 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
+                        <span class="text-sm">Pengembangan Karir (Magang)</span>
+                    </div>
+                    <div class="flex items-center p-2 bg-slate-50 rounded">
+                        <span class="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold mr-3">4</span>
+                        <span class="text-sm">Metode Pembelajaran Aktif</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Cloud Visual -->
+            <div class="card col-span-1">
+                <div class="flex items-center mb-4">
+                    <i data-lucide="message-square" class="text-indigo-600 mr-2"></i>
+                    <h2 class="text-xl font-semibold">Saran Perbaikan</h2>
+                </div>
+                <div class="text-center py-4">
+                    <span class="word-cloud-item bg-blue-100 text-blue-800 text-2xl">Toilet</span>
+                    <span class="word-cloud-item bg-indigo-100 text-indigo-800 text-xl">Wi-Fi</span>
+                    <span class="word-cloud-item bg-purple-100 text-purple-800 text-lg">AC</span>
+                    <span class="word-cloud-item bg-pink-100 text-pink-800 text-sm">Laboratorium</span>
+                    <span class="word-cloud-item bg-emerald-100 text-emerald-800 text-base">Magang</span>
+                    <span class="word-cloud-item bg-amber-100 text-amber-800 text-xs">Gen Z</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Closing -->
+        <footer class="text-center py-8 bg-slate-200 rounded-2xl">
+            <h3 class="text-xl font-semibold mb-2">Komitmen Masa Depan</h3>
+            <p class="max-w-2xl mx-auto text-slate-600 px-6">Program studi terus berkomitmen melakukan evaluasi rutin berdasarkan aspirasi mahasiswa dan dosen untuk menjaga konsistensi layanan dan relevansi kurikulum dengan kebutuhan industri digital masa kini.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dosen Satisfaction Chart
+        const ctxDosen = document.getElementById('dosenChart').getContext('2d');
+        new Chart(ctxDosen, {
+            type: 'pie',
+            data: {
+                labels: ['Sangat Baik (59%)', 'Baik (29%)', 'Cukup (10%)', 'Kurang (2%)'],
+                datasets: [{
+                    data: [59, 29, 10, 2],
+                    backgroundColor: ['#1e40af', '#3b82f6', '#94a3b8', '#f87171'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { boxWidth: 12, font: { size: 10 } }
+                    }
+                }
+            }
+        });
+
+        // Tendik Satisfaction Chart
+        const ctxTendik = document.getElementById('tendikChart').getContext('2d');
+        new Chart(ctxTendik, {
+            type: 'bar',
+            data: {
+                labels: ['Layanan A', 'Layanan B', 'Layanan C', 'Layanan D'],
+                datasets: [{
+                    label: 'Skala Kepuasan',
+                    data: [3.2, 3.3, 3.1, 3.4], // Dummy data reflecting avg 3.25
+                    backgroundColor: '#3b82f6',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 4,
+                        ticks: { stepSize: 1 }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            afterLabel: function(context) {
+                                if(context.label === 'Layanan D') return 'Tertinggi: Fasilitas';
+                                if(context.label === 'Layanan C') return 'Terendah: Kesejahteraan';
+                                return '';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
