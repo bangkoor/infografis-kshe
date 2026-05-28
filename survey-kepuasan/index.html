@@ -74,8 +74,14 @@
                     <h2 class="text-xl font-semibold">Kepuasan Tendik</h2>
                 </div>
                 <p class="text-sm text-slate-600 mb-4">Nilai rata-rata 3,25 / 4,00 (Kategori Sangat Baik).</p>
-                <div class="chart-container">
+                <div class="chart-container mb-4">
                     <canvas id="tendikChart"></canvas>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-[10px] md:text-xs text-slate-600 border-t pt-4">
+                    <div><span class="font-bold text-blue-600">A:</span> Manajemen & Administrasi</div>
+                    <div><span class="font-bold text-blue-600">B:</span> Pengembangan SDM</div>
+                    <div><span class="font-bold text-blue-600">C:</span> Kesejahteraan & Lingkungan</div>
+                    <div><span class="font-bold text-blue-600">D:</span> Fasilitas & Dukungan</div>
                 </div>
             </div>
         </div>
@@ -221,7 +227,7 @@
         new Chart(ctxTendik, {
             type: 'bar',
             data: {
-                labels: ['Layanan A', 'Layanan B', 'Layanan C', 'Layanan D'],
+                labels: ['A', 'B', 'C', 'D'],
                 datasets: [{
                     label: 'Skala Kepuasan',
                     data: [3.2, 3.3, 3.1, 3.4], // Dummy data reflecting avg 3.25
@@ -244,9 +250,13 @@
                     tooltip: {
                         callbacks: {
                             afterLabel: function(context) {
-                                if(context.label === 'Layanan D') return 'Tertinggi: Fasilitas';
-                                if(context.label === 'Layanan C') return 'Terendah: Kesejahteraan';
-                                return '';
+                                const labels = {
+                                    'A': 'Manajemen & Administrasi',
+                                    'B': 'Pengembangan SDM',
+                                    'C': 'Kesejahteraan & Lingkungan',
+                                    'D': 'Fasilitas & Dukungan'
+                                };
+                                return labels[context.label] || '';
                             }
                         }
                     }
