@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survei Kepuasan Dosen – KSHE IPB University TS 2024/2025</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#F2EFE8; --green-dark:#085041; --green-mid:#0F6E56; --green-light:#1D9E75;
+  --blue:#378ADD; --yellow:#EF9F27; --coral:#D85A30; --purple:#7F77DD; --pink:#D4537E;
+  --white:#ffffff; --text:#1a2520; --text-muted:#5a6b65;
+  --font:'Arial','Helvetica Neue',Helvetica,sans-serif;
+}
+body { font-family:var(--font); background:var(--bg); color:var(--text); }
+
+/* HEADER */
+.header { background:var(--green-dark); color:white; position:relative; overflow:hidden; }
+.header-inner { max-width:1000px; margin:0 auto; padding:0 32px; display:flex; align-items:stretch; }
+.header-left { flex:1; padding:36px 32px 32px 0; }
+.eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.eyebrow span { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--green-light); white-space:nowrap; }
+.eyebrow::after { content:''; flex:1; height:1px; background:rgba(29,158,117,.3); }
+.header h1 { font-size:27px; font-weight:700; line-height:1.22; letter-spacing:-.3px; margin-bottom:5px; }
+.header-sub { font-size:13px; color:rgba(255,255,255,.6); }
+.header-pill { display:inline-block; background:var(--green-light); color:white; font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 11px; border-radius:3px; margin-top:14px; }
+.header-scores { display:flex; border-left:1px solid rgba(255,255,255,.1); padding-left:32px; }
+.score-box { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px 20px; gap:3px; min-width:110px; }
+.score-box+.score-box { border-left:1px solid rgba(255,255,255,.08); }
+.score-lbl { font-size:9.5px; letter-spacing:1.3px; text-transform:uppercase; color:rgba(255,255,255,.45); text-align:center; line-height:1.4; }
+.score-val { font-size:44px; font-weight:700; line-height:1; letter-spacing:-2px; color:var(--yellow); }
+.score-sub { font-size:11px; color:rgba(255,255,255,.35); }
+.score-badge { background:var(--yellow); color:var(--green-dark); font-size:10px; font-weight:700; letter-spacing:.5px; padding:3px 10px; border-radius:20px; margin-top:2px; }
+.leaf-bg { position:absolute; right:-20px; top:0; bottom:0; width:220px; opacity:.05; pointer-events:none; }
+
+/* MAIN */
+.main { max-width:1000px; margin:0 auto; padding:32px 32px 0; }
+.sec { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.sec span { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--green-mid); white-space:nowrap; }
+.sec::after { content:''; flex:1; height:1.5px; background:linear-gradient(to right, var(--green-light), transparent); }
+
+/* STAT ROW */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:28px; }
+.stat-card { background:var(--white); border-top:4px solid var(--green-light); border-radius:6px; padding:16px 18px; }
+.stat-card.blue { border-top-color:var(--blue); }
+.stat-card.yellow { border-top-color:var(--yellow); }
+.stat-card.coral { border-top-color:var(--coral); }
+.stat-v { font-size:30px; font-weight:700; line-height:1; letter-spacing:-1px; color:var(--green-dark); }
+.stat-card.blue .stat-v { color:var(--blue); }
+.stat-card.yellow .stat-v { color:var(--yellow); }
+.stat-card.coral .stat-v { color:var(--coral); }
+.stat-l { font-size:10.5px; color:var(--text-muted); line-height:1.4; margin-top:5px; }
+
+/* LEGEND */
+.legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px; }
+.leg-item { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text-muted); }
+.leg-dot { width:10px; height:10px; border-radius:2px; }
+
+/* ASPEK GRID */
+.aspek-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+.aspek-card { background:var(--white); border-radius:6px; padding:18px 20px 16px; border-left:5px solid var(--green-light); }
+.aspek-card.b-card { border-left-color:var(--blue); }
+.aspek-card.c-card { border-left-color:var(--yellow); }
+.aspek-card.d-card { border-left-color:var(--coral); }
+.aspek-card.e-card { border-left-color:var(--purple); }
+.aspek-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; gap:10px; }
+.aspek-meta { display:flex; align-items:flex-start; gap:10px; flex:1; }
+.aspek-badge { width:26px; height:26px; border-radius:50%; background:var(--green-dark); color:white; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.aspek-card.b-card .aspek-badge { background:var(--blue); }
+.aspek-card.c-card .aspek-badge { background:var(--yellow); }
+.aspek-card.d-card .aspek-badge { background:var(--coral); }
+.aspek-card.e-card .aspek-badge { background:var(--purple); }
+.aspek-title { font-size:12px; font-weight:700; line-height:1.35; }
+.aspek-score-big { font-size:26px; font-weight:700; letter-spacing:-1px; color:var(--green-dark); line-height:1; white-space:nowrap; }
+.aspek-card.b-card .aspek-score-big { color:var(--blue); }
+.aspek-card.c-card .aspek-score-big { color:var(--yellow); }
+.aspek-card.d-card .aspek-score-big { color:var(--coral); }
+.aspek-card.e-card .aspek-score-big { color:var(--purple); }
+.aspek-of4 { font-size:11px; font-weight:400; color:var(--text-muted); }
+.ind-list { display:flex; flex-direction:column; gap:7px; }
+.ind-row { display:flex; align-items:center; gap:8px; }
+.ind-code { font-size:9.5px; font-weight:700; letter-spacing:.5px; color:var(--text-muted); width:24px; flex-shrink:0; }
+.ind-label { font-size:10.5px; color:var(--text); flex:1; line-height:1.3; }
+.ind-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.ind-bar-track { width:70px; height:7px; background:#eee; border-radius:4px; overflow:hidden; }
+.ind-bar-fill { height:100%; border-radius:4px; background:var(--green-light); }
+.aspek-card.b-card .ind-bar-fill { background:var(--blue); }
+.aspek-card.c-card .ind-bar-fill { background:var(--yellow); }
+.aspek-card.d-card .ind-bar-fill { background:var(--coral); }
+.aspek-card.e-card .ind-bar-fill { background:var(--purple); }
+.ind-score { font-size:10.5px; font-weight:700; color:var(--text-muted); width:28px; text-align:right; }
+
+/* KOMPOSIT */
+.komposit-card { background:var(--white); border-left:6px solid var(--green-dark); border-radius:6px; padding:22px 26px; margin-bottom:28px; }
+.komposit-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:14px; }
+.komposit-body { display:flex; align-items:center; gap:20px; }
+.komposit-num { font-size:44px; font-weight:700; letter-spacing:-2px; color:var(--green-dark); line-height:1; }
+.komposit-num span { font-size:15px; font-weight:400; color:var(--text-muted); }
+.komposit-bar-wrap { flex:1; }
+.komposit-track { height:18px; background:#eee; border-radius:9px; overflow:hidden; margin-bottom:6px; }
+.komposit-fill { height:100%; width:89.6%; background:linear-gradient(90deg,var(--green-dark) 0%,var(--green-light) 100%); border-radius:9px; }
+.komposit-ticks { display:flex; justify-content:space-between; font-size:9px; color:var(--text-muted); }
+.komposit-scale { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.scale-item { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text-muted); }
+.scale-dot { width:10px; height:10px; border-radius:2px; background:#ddd; flex-shrink:0; }
+.scale-item.active .scale-dot { background:var(--green-light); }
+.scale-item.active span { font-weight:700; color:var(--green-dark); }
+
+/* STRIP */
+.aspek-strip { background:var(--white); border-radius:6px; padding:20px 22px; margin-bottom:28px; }
+.strip-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:16px; }
+.strip-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.strip-label { font-size:11px; width:230px; flex-shrink:0; color:var(--text); }
+.strip-track { flex:1; height:22px; background:#f0ede8; border-radius:4px; overflow:hidden; }
+.strip-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:8px; font-size:10.5px; font-weight:700; color:white; }
+.strip-val { font-size:11px; font-weight:700; color:var(--text-muted); width:36px; flex-shrink:0; text-align:right; }
+.strip-rank { font-size:9px; font-weight:700; padding:2px 6px; border-radius:10px; flex-shrink:0; width:26px; text-align:center; }
+.rank-best { background:#d4f0e4; color:var(--green-dark); }
+.rank-low  { background:#fde8e0; color:var(--coral); }
+.rank-mid  { background:#f0ede8; color:var(--text-muted); }
+
+/* BOTTOM GRID */
+.bottom-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+.kep-card { background:var(--white); border-radius:6px; padding:20px 22px; border-top:4px solid var(--yellow); }
+.kep-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:14px; }
+.kep-row { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+.kep-lbl { font-size:11px; width:90px; font-weight:600; flex-shrink:0; }
+.kep-track { flex:1; height:26px; background:#f0ede8; border-radius:4px; overflow:hidden; }
+.kep-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:9px; font-size:11px; font-weight:700; color:white; }
+.kep-fill.sp { background:var(--green-light); }
+.kep-fill.p  { background:var(--blue); }
+.kep-fill.cp { background:var(--yellow); }
+.kep-fill.k  { background:var(--coral); }
+.kep-pct { font-size:11px; font-weight:700; color:var(--text-muted); width:38px; text-align:right; flex-shrink:0; }
+.kep-note { font-size:10.5px; color:var(--text-muted); line-height:1.5; margin-top:12px; }
+.kep-note strong { color:var(--green-dark); }
+.profil-card { background:var(--white); border-radius:6px; padding:20px 22px; border-top:4px solid var(--purple); }
+.profil-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:14px; }
+.profil-group { margin-bottom:14px; }
+.profil-group-lbl { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text-muted); margin-bottom:8px; }
+.profil-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:11px; }
+.profil-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.profil-name { flex:1; }
+.profil-n { font-weight:700; color:var(--text-muted); background:#f0ede8; border-radius:10px; padding:1px 8px; font-size:10.5px; }
+
+/* HIGHLIGHTS */
+.hl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+.hl { background:var(--white); border-radius:6px; padding:16px 18px; border-left:4px solid var(--blue); }
+.hl.y  { border-left-color:var(--yellow); }
+.hl.co { border-left-color:var(--coral); }
+.hl-icon { font-size:18px; margin-bottom:6px; }
+.hl-ttl { font-size:11px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.hl-txt { font-size:10.5px; color:var(--text-muted); line-height:1.5; }
+
+/* KESIMPULAN */
+.kesimpulan { background:var(--green-dark); color:white; border-radius:6px; padding:22px 26px; margin-bottom:28px; }
+.k-hdr { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green-light); margin-bottom:10px; }
+.k-txt { font-size:12.5px; line-height:1.7; color:rgba(255,255,255,.85); }
+.k-txt strong { color:var(--yellow); }
+
+/* FOOTER */
+footer { background:var(--green-dark); color:rgba(255,255,255,.6); padding:18px 32px; font-size:10.5px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+footer strong { color:rgba(255,255,255,.9); }
+footer .fr { color:rgba(255,255,255,.4); font-size:10px; }
+
+@media(max-width:680px){
+  .aspek-grid,.bottom-grid,.hl-grid,.stat-row { grid-template-columns:1fr; }
+  .header-scores { display:none; }
+  .komposit-body { flex-direction:column; align-items:flex-start; }
+  .main { padding:20px 16px 0; }
+  .aspek-card.e-card .ind-list { grid-template-columns:1fr !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <svg class="leaf-bg" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M110 320 C110 320 200 230 200 140 C200 70 160 22 110 10 C60 22 20 70 20 140 C20 230 110 320 110 320Z" fill="white"/>
+    <line x1="110" y1="320" x2="110" y2="10" stroke="white" stroke-width="3"/>
+    <line x1="110" y1="240" x2="168" y2="195" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="215" x2="57" y2="175" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="185" x2="162" y2="147" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="160" x2="63" y2="127" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="135" x2="153" y2="103" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="110" x2="70" y2="82" stroke="white" stroke-width="1.5"/>
+  </svg>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="eyebrow"><span>Departemen KSHE · IPB University</span></div>
+      <h1>Survei Kepuasan Dosen<br>Terhadap Layanan Institusi</h1>
+      <div class="header-sub">Fakultas Kehutanan dan Lingkungan · 5 Aspek Layanan · 20 Indikator</div>
+      <div class="header-pill">Periode TS 2024/2025</div>
+    </div>
+    <div class="header-scores">
+      <div class="score-box">
+        <div class="score-lbl">Indeks<br>Komposit</div>
+        <div class="score-val">3,58</div>
+        <div class="score-sub">dari 4,00</div>
+        <div class="score-badge">✦ Sangat Baik</div>
+      </div>
+      <div class="score-box">
+        <div class="score-lbl">Responden<br>&nbsp;</div>
+        <div class="score-val" style="font-size:38px">32</div>
+        <div class="score-sub">dosen</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <div style="margin-top:4px;margin-bottom:18px;"><div class="sec"><span>Ringkasan Partisipasi &amp; Profil</span></div></div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-v">32</div>
+      <div class="stat-l">Dosen mengisi survei</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-v">20</div>
+      <div class="stat-l">Indikator dinilai (5 aspek)</div>
+    </div>
+    <div class="stat-card yellow">
+      <div class="stat-v">96,9%</div>
+      <div class="stat-l">Dosen Tetap / PNS</div>
+    </div>
+    <div class="stat-card coral">
+      <div class="stat-v">75%</div>
+      <div class="stat-l">Mengampu kombinasi jenjang</div>
+    </div>
+  </div>
+
+  <div class="sec"><span>Penilaian per Aspek &amp; Indikator</span></div>
+  <div style="margin-bottom:10px;">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green-light)"></div>Sangat Baik (4)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--blue)"></div>Baik (3)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--yellow)"></div>Cukup (2)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--coral)"></div>Kurang (1)</div>
+      <div class="leg-item" style="margin-left:auto;"><div class="leg-dot" style="background:#ccc"></div>Bar = proporsi skor /4,00 · n=32</div>
+    </div>
+  </div>
+
+  <div class="aspek-grid">
+
+    <!-- A -->
+    <div class="aspek-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">A</div>
+          <div class="aspek-title">Layanan Akademik &amp;<br>Pengajaran</div>
+        </div>
+        <div class="aspek-score-big">3,59<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row"><div class="ind-code">A.1</div><div class="ind-label">Pedoman akademik &amp; kurikulum<br><span style="font-size:9px;color:var(--text-muted)">SB:21 · B:11 · C:0 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.4%"></div></div><div class="ind-score">3,66</div></div></div>
+        <div class="ind-row"><div class="ind-code">A.2</div><div class="ind-label">Fasilitas mengajar (kelas, LCD, lab)<br><span style="font-size:9px;color:var(--text-muted)">SB:7 · B:20 · C:5 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:76.6%"></div></div><div class="ind-score">3,06</div></div></div>
+        <div class="ind-row"><div class="ind-code">A.3</div><div class="ind-label">Bahan ajar &amp; referensi perpustakaan<br><span style="font-size:9px;color:var(--text-muted)">SB:24 · B:6 · C:2 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:92.2%"></div></div><div class="ind-score">3,69</div></div></div>
+        <div class="ind-row"><div class="ind-code">A.4</div><div class="ind-label">Sistem informasi akademik (SIAKAD)<br><span style="font-size:9px;color:var(--text-muted)">SB:28 · B:3 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:96.1%"></div></div><div class="ind-score">3,84</div></div></div>
+        <div class="ind-row"><div class="ind-code">A.5</div><div class="ind-label">Kemudahan menyusun &amp; unggah RPS<br><span style="font-size:9px;color:var(--text-muted)">SB:22 · B:9 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.4%"></div></div><div class="ind-score">3,66</div></div></div>
+        <div class="ind-row"><div class="ind-code">A.6</div><div class="ind-label">Monitoring &amp; evaluasi pembelajaran<br><span style="font-size:9px;color:var(--text-muted)">SB:22 · B:9 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.4%"></div></div><div class="ind-score">3,66</div></div></div>
+      </div>
+    </div>
+
+    <!-- B -->
+    <div class="aspek-card b-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">B</div>
+          <div class="aspek-title">Layanan Penelitian &amp;<br>Pengabdian Masyarakat</div>
+        </div>
+        <div class="aspek-score-big">3,49<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row"><div class="ind-code">B.1</div><div class="ind-label">Informasi peluang hibah penelitian<br><span style="font-size:9px;color:var(--text-muted)">SB:28 · B:3 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:96.1%"></div></div><div class="ind-score">3,84</div></div></div>
+        <div class="ind-row"><div class="ind-code">B.2</div><div class="ind-label">Dukungan pendanaan penelitian<br><span style="font-size:9px;color:var(--text-muted)">SB:10 · B:19 · C:2 · K:1</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:79.7%"></div></div><div class="ind-score">3,19</div></div></div>
+        <div class="ind-row"><div class="ind-code">B.3</div><div class="ind-label">Fasilitas lab pendukung penelitian<br><span style="font-size:9px;color:var(--text-muted)">SB:18 · B:9 · C:4 · K:1</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:84.4%"></div></div><div class="ind-score">3,38</div></div></div>
+        <div class="ind-row"><div class="ind-code">B.4</div><div class="ind-label">Administrasi proposal &amp; laporan<br><span style="font-size:9px;color:var(--text-muted)">SB:22 · B:9 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.4%"></div></div><div class="ind-score">3,66</div></div></div>
+        <div class="ind-row"><div class="ind-code">B.5</div><div class="ind-label">Dukungan publikasi ilmiah<br><span style="font-size:9px;color:var(--text-muted)">SB:10 · B:19 · C:2 · K:1</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:79.7%"></div></div><div class="ind-score">3,19</div></div></div>
+        <div class="ind-row"><div class="ind-code">B.6</div><div class="ind-label">Dukungan pengurusan HKI<br><span style="font-size:9px;color:var(--text-muted)">SB:25 · B:5 · C:2 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:92.9%"></div></div><div class="ind-score">3,72</div></div></div>
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="aspek-card c-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">C</div>
+          <div class="aspek-title">Layanan Bimbingan<br>Tugas Akhir</div>
+        </div>
+        <div class="aspek-score-big" style="color:var(--yellow)">3,88<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row"><div class="ind-code">C.1</div><div class="ind-label">Prosedur bimbingan skripsi/tesis/disertasi<br><span style="font-size:9px;color:var(--text-muted)">SB:26 · B:6 · C:0 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:95.3%"></div></div><div class="ind-score">3,81</div></div></div>
+        <div class="ind-row"><div class="ind-code">C.2</div><div class="ind-label">Administrasi ujian (pendaftaran, jadwal, ruang)<br><span style="font-size:9px;color:var(--text-muted)">SB:30 · B:2 · C:0 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:98.4%"></div></div><div class="ind-score">3,94</div></div></div>
+        <div class="ind-row"><div class="ind-code">C.3</div><div class="ind-label">Pedoman penulisan yang mutakhir<br><span style="font-size:9px;color:var(--text-muted)">SB:28 · B:4 · C:0 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:96.9%"></div></div><div class="ind-score">3,88</div></div></div>
+      </div>
+      <div style="margin-top:12px;padding:8px 10px;background:#fef9f0;border-radius:4px;font-size:10px;color:var(--text-muted);line-height:1.4;">
+        ✦ <strong style="color:var(--green-dark)">Aspek tertinggi</strong> — 100% responden menilai Baik atau Sangat Baik pada semua 3 indikator
+      </div>
+    </div>
+
+    <!-- D -->
+    <div class="aspek-card d-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">D</div>
+          <div class="aspek-title">Layanan Administrasi &amp;<br>Kepegawaian</div>
+        </div>
+        <div class="aspek-score-big">3,66<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row"><div class="ind-code">D.1</div><div class="ind-label">Pengurusan kepegawaian &amp; sertifikasi<br><span style="font-size:9px;color:var(--text-muted)">SB:24 · B:8 · C:0 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:93.8%"></div></div><div class="ind-score">3,75</div></div></div>
+        <div class="ind-row"><div class="ind-code">D.2</div><div class="ind-label">Penggajian &amp; tunjangan<br><span style="font-size:9px;color:var(--text-muted)">SB:25 · B:5 · C:2 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:92.9%"></div></div><div class="ind-score">3,72</div></div></div>
+        <div class="ind-row"><div class="ind-code">D.3</div><div class="ind-label">Pengajuan cuti, izin, tugas belajar<br><span style="font-size:9px;color:var(--text-muted)">SB:24 · B:7 · C:1 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:92.9%"></div></div><div class="ind-score">3,72</div></div></div>
+        <div class="ind-row"><div class="ind-code">D.4</div><div class="ind-label">Fasilitas pengembangan profesi<br><span style="font-size:9px;color:var(--text-muted)">SB:18 · B:11 · C:2 · K:1</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:85.9%"></div></div><div class="ind-score">3,44</div></div></div>
+      </div>
+    </div>
+
+    <!-- E full width -->
+    <div class="aspek-card e-card" style="grid-column:1/-1">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">E</div>
+          <div class="aspek-title">Layanan Umum &amp; Fasilitas</div>
+        </div>
+        <div class="aspek-score-big">3,41<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">
+        <div class="ind-row"><div class="ind-code">E.1</div><div class="ind-label">Ruang kerja dosen yang layak<br><span style="font-size:9px;color:var(--text-muted)">SB:14 · B:15 · C:3 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:83.6%"></div></div><div class="ind-score">3,34</div></div></div>
+        <div class="ind-row"><div class="ind-code">E.2</div><div class="ind-label">Akses &amp; kualitas internet<br><span style="font-size:9px;color:var(--text-muted)">SB:22 · B:4 · C:3 · K:3</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:85.2%"></div></div><div class="ind-score">3,41</div></div></div>
+        <div class="ind-row"><div class="ind-code">E.3</div><div class="ind-label">Layanan perpustakaan &amp; e-resources<br><span style="font-size:9px;color:var(--text-muted)">SB:26 · B:4 · C:2 · K:0</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:93.8%"></div></div><div class="ind-score">3,75</div></div></div>
+        <div class="ind-row"><div class="ind-code">E.4</div><div class="ind-label">Kantin, tempat ibadah, toilet, parkir<br><span style="font-size:9px;color:var(--text-muted)">SB:12 · B:14 · C:5 · K:1</span></div><div class="ind-right"><div class="ind-bar-track"><div class="ind-bar-fill" style="width:78.9%"></div></div><div class="ind-score">3,16</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KOMPOSIT -->
+  <div class="komposit-card">
+    <div class="komposit-title">Indeks Kepuasan Komposit — Rata-rata 20 Indikator (5 Aspek Layanan)</div>
+    <div class="komposit-body">
+      <div class="komposit-num">3,58<span> /4,00</span></div>
+      <div class="komposit-bar-wrap">
+        <div class="komposit-track"><div class="komposit-fill"></div></div>
+        <div class="komposit-ticks"><span>1,00</span><span>2,00</span><span>3,00</span><span>4,00</span></div>
+      </div>
+    </div>
+    <div class="komposit-scale">
+      <div class="scale-item"><div class="scale-dot"></div><span>Kurang (1,00–1,74)</span></div>
+      <div class="scale-item"><div class="scale-dot"></div><span>Cukup (1,75–2,49)</span></div>
+      <div class="scale-item"><div class="scale-dot"></div><span>Baik (2,50–3,24)</span></div>
+      <div class="scale-item active"><div class="scale-dot"></div><span>Sangat Baik (3,25–4,00) ← posisi saat ini</span></div>
+    </div>
+  </div>
+
+  <!-- PERBANDINGAN ASPEK -->
+  <div class="aspek-strip">
+    <div class="strip-title">Peringkat Skor Antar Aspek Layanan</div>
+    <div class="strip-row">
+      <div class="strip-label">C — Bimbingan Tugas Akhir</div>
+      <div class="strip-track"><div class="strip-fill" style="width:97.0%;background:var(--yellow)">3,88</div></div>
+      <div class="strip-val">3,88</div><div class="strip-rank rank-best">★ 1</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">D — Administrasi &amp; Kepegawaian</div>
+      <div class="strip-track"><div class="strip-fill" style="width:91.4%;background:var(--coral)">3,66</div></div>
+      <div class="strip-val">3,66</div><div class="strip-rank rank-mid">2</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A — Akademik &amp; Pengajaran</div>
+      <div class="strip-track"><div class="strip-fill" style="width:89.8%;background:var(--green-light)">3,59</div></div>
+      <div class="strip-val">3,59</div><div class="strip-rank rank-mid">3</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">B — Penelitian &amp; PkM</div>
+      <div class="strip-track"><div class="strip-fill" style="width:87.4%;background:var(--blue)">3,49</div></div>
+      <div class="strip-val">3,49</div><div class="strip-rank rank-mid">4</div>
+    </div>
+    <div class="strip-row" style="margin-bottom:0">
+      <div class="strip-label">E — Umum &amp; Fasilitas</div>
+      <div class="strip-track"><div class="strip-fill" style="width:85.4%;background:var(--purple)">3,41</div></div>
+      <div class="strip-val">3,41</div><div class="strip-rank rank-low">▼ 5</div>
+    </div>
+  </div>
+
+  <!-- KEPUASAN + PROFIL -->
+  <div class="sec"><span>Kepuasan Keseluruhan &amp; Profil Responden</span></div>
+  <div class="bottom-grid">
+    <div class="kep-card">
+      <div class="kep-title">Tingkat Kepuasan terhadap Manajemen PS/UPPS</div>
+      <div class="kep-row"><div class="kep-lbl">Sangat Puas</div><div class="kep-track"><div class="kep-fill sp" style="width:32.3%">10</div></div><div class="kep-pct">32,3%</div></div>
+      <div class="kep-row"><div class="kep-lbl">Puas</div><div class="kep-track"><div class="kep-fill p" style="width:41.9%">13</div></div><div class="kep-pct">41,9%</div></div>
+      <div class="kep-row"><div class="kep-lbl">Cukup Puas</div><div class="kep-track"><div class="kep-fill cp" style="width:22.6%">7</div></div><div class="kep-pct">22,6%</div></div>
+      <div class="kep-row"><div class="kep-lbl">Kurang Puas</div><div class="kep-track"><div class="kep-fill k" style="width:3.2%">1</div></div><div class="kep-pct">3,2%</div></div>
+      <div class="kep-note">
+        <strong>74,2%</strong> responden menyatakan Puas atau Sangat Puas terhadap manajemen PS/UPPS.<br>
+        <span style="font-size:9.5px;color:#8fa39a;">*Dari 31 yang menyertakan pernyataan kepuasan; 1 responden memberikan saran tanpa pernyataan kepuasan eksplisit.</span>
+      </div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-title">Profil Responden</div>
+      <div class="profil-group">
+        <div class="profil-group-lbl">Status Kepegawaian</div>
+        <div class="profil-row"><div class="profil-dot" style="background:var(--green-light)"></div><div class="profil-name">Dosen Tetap / PNS</div><div class="profil-n">31</div></div>
+        <div class="profil-row"><div class="profil-dot" style="background:var(--blue)"></div><div class="profil-name">Dosen Kontrak</div><div class="profil-n">1</div></div>
+      </div>
+      <div class="profil-group">
+        <div class="profil-group-lbl">Jenjang yang Paling Sering Diampu</div>
+        <div class="profil-row"><div class="profil-dot" style="background:var(--yellow)"></div><div class="profil-name">Kombinasi (S1 + S2 / S3)</div><div class="profil-n">24</div></div>
+        <div class="profil-row"><div class="profil-dot" style="background:var(--coral)"></div><div class="profil-name">Sarjana (S1)</div><div class="profil-n">7</div></div>
+        <div class="profil-row"><div class="profil-dot" style="background:var(--purple)"></div><div class="profil-name">Magister (S2)</div><div class="profil-n">1</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:10px;color:var(--text-muted);">Total: 32 responden · TS 2024/2025</div>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="sec"><span>Temuan Kunci</span></div>
+  <div class="hl-grid">
+    <div class="hl">
+      <div class="hl-icon">🏆</div>
+      <div class="hl-ttl">Tertinggi: Bimbingan Tugas Akhir (3,88)</div>
+      <div class="hl-txt">100% responden menilai Baik atau Sangat Baik di semua 3 indikator Aspek C. C.2 (administrasi ujian) menjadi indikator tertinggi (3,94/4,00).</div>
+    </div>
+    <div class="hl y">
+      <div class="hl-icon">⚠️</div>
+      <div class="hl-ttl">Perlu Perhatian: Fasilitas &amp; Dukungan PkM</div>
+      <div class="hl-txt">E.4 (kantin/ibadah/parkir) 3,16 dan B.2/B.5 (pendanaan &amp; publikasi) masing-masing 3,19 — indikator terendah dalam survei ini.</div>
+    </div>
+    <div class="hl co">
+      <div class="hl-icon">📋</div>
+      <div class="hl-ttl">Saran Utama Dosen</div>
+      <div class="hl-txt">Dukungan APC untuk publikasi, perbaikan fasilitas mengajar (sound system, alat tulis), stabilitas internet, dan penguatan regenerasi dosen.</div>
+    </div>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <div class="kesimpulan">
+    <div class="k-hdr">✦ Kesimpulan</div>
+    <div class="k-txt">
+      Berdasarkan survei kepuasan terhadap <strong>32 dosen</strong> Departemen KSHE IPB University periode TS 2024/2025
+      yang mencakup <strong>20 indikator dalam 5 aspek layanan</strong>, diperoleh
+      <strong>indeks kepuasan komposit sebesar 3,58 dari skala 4,00</strong>, berada dalam kategori
+      <strong>Sangat Baik (≥ 3,25)</strong>. Aspek Bimbingan Tugas Akhir menjadi yang tertinggi (3,88),
+      disusul Administrasi &amp; Kepegawaian (3,66), Akademik &amp; Pengajaran (3,59), Penelitian &amp; PkM (3,49),
+      dan Umum &amp; Fasilitas (3,41). Sebanyak <strong>74,2% responden menyatakan Puas atau Sangat Puas</strong>
+      terhadap manajemen program studi/UPPS. Prioritas perbaikan mencakup dukungan pendanaan dan publikasi
+      ilmiah, fasilitas fisik, serta stabilitas layanan internet.
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div>
+    <strong>Departemen Konservasi Sumberdaya Hutan dan Ekowisata (KSHE)</strong><br>
+    Fakultas Kehutanan dan Lingkungan · IPB University · Bogor, Indonesia
+  </div>
+  <div class="fr">Survei Kepuasan Dosen TS 2024/2025 · n = 32 responden · 5 aspek · 20 indikator</div>
+</footer>
+
+</body>
+</html>
