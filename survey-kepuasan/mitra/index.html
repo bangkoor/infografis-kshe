@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografis Kepuasan Mitra Kerjasama — KSHE IPB University</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --hijau-gelap: #085041;
+    --hijau-mid: #0F6E56;
+    --hijau-terang: #1D9E75;
+    --bg: #F2EFE8;
+    --biru: #378ADD;
+    --kuning: #EF9F27;
+    --coral: #D85A30;
+    --ungu: #7F77DD;
+    --pink: #D4537E;
+    --putih: #ffffff;
+    --teks: #1a2e27;
+    --teks-ringan: #4a6459;
+  }
+
+  body {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--teks);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--hijau-gelap);
+    color: var(--putih);
+    padding: 36px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .header-left { flex: 1; }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hijau-terang);
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .header-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  .header-score-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    min-width: 180px;
+  }
+  .score-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+  .score-value {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--kuning);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .score-kategori {
+    margin-top: 6px;
+    display: inline-block;
+    background: var(--kuning);
+    color: var(--hijau-gelap);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .header-meta {
+    margin-top: 10px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .header-deco {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-label-text {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hijau-mid);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .section-label-line {
+    height: 2px;
+    flex: 1;
+    background: linear-gradient(to right, var(--hijau-mid), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── RINGKASAN ROW ── */
+  .ringkasan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 20px;
+    border-top: 4px solid var(--hijau-terang);
+  }
+  .stat-card.coral { border-top-color: var(--coral); }
+  .stat-card.biru  { border-top-color: var(--biru); }
+  .stat-card.ungu  { border-top-color: var(--ungu); }
+  .stat-card.kuning { border-top-color: var(--kuning); }
+  .stat-num {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+    line-height: 1;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: var(--teks-ringan);
+    margin-top: 6px;
+  }
+
+  /* ── KEPUASAN OVERALL ── */
+  .kepuasan-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 40px;
+    border-top: 4px solid var(--hijau-terang);
+  }
+  .kepuasan-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teks);
+    margin-bottom: 16px;
+  }
+  .kepuasan-bars { display: flex; flex-direction: column; gap: 10px; }
+  .kb-row { display: flex; align-items: center; gap: 12px; }
+  .kb-label { width: 170px; font-size: 12px; color: var(--teks-ringan); text-align: right; flex-shrink: 0; }
+  .kb-bar-wrap { flex: 1; background: #f0ede6; border-radius: 4px; overflow: hidden; height: 22px; }
+  .kb-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; transition: width 0.6s ease; }
+  .kb-bar span { font-size: 11px; font-weight: 700; color: var(--putih); white-space: nowrap; }
+  .kb-count { width: 40px; font-size: 12px; color: var(--teks-ringan); text-align: right; flex-shrink: 0; }
+
+  /* ── ASPEK GRID ── */
+  .aspek-section { margin-bottom: 16px; }
+  .aspek-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .aspek-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+  }
+  .aspek-skor-badge {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--hijau-mid);
+  }
+  .aspek-skor-kat {
+    font-size: 11px;
+    color: var(--teks-ringan);
+    margin-left: 6px;
+  }
+
+  /* ── INDICATOR CARDS ── */
+  .indikator-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+  .ind-card {
+    background: var(--putih);
+    border-radius: 8px;
+    padding: 14px 18px;
+    border-left: 4px solid var(--hijau-terang);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .ind-card.low { border-left-color: var(--coral); }
+  .ind-card.high { border-left-color: var(--kuning); }
+  .ind-code-label {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .ind-code {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--hijau-mid);
+    background: #e6f7f1;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .ind-card.low .ind-code { color: var(--coral); background: #fde8e0; }
+  .ind-card.high .ind-code { color: #b36800; background: #fff8e6; }
+  .ind-name {
+    font-size: 12.5px;
+    color: var(--teks);
+    line-height: 1.4;
+  }
+
+  .dist-row {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .dist-seg { height: 100%; }
+  .dist-legend {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+  }
+  .dl-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--teks-ringan);
+  }
+  .dl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .c-sb { background: var(--hijau-terang); }
+  .c-b  { background: var(--biru); }
+  .c-c  { background: var(--kuning); }
+  .c-k  { background: var(--coral); }
+
+  .ind-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .ind-skor {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+    line-height: 1;
+  }
+  .ind-kat {
+    font-size: 10px;
+    color: var(--teks-ringan);
+    margin-top: 3px;
+  }
+
+  /* ── SEKTOR MITRA ── */
+  .sektor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .sektor-card {
+    background: var(--putih);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    border-top: 3px solid var(--hijau-terang);
+  }
+  .sektor-label { font-size: 11.5px; color: var(--teks-ringan); line-height: 1.3; min-height: 28px; }
+  .sektor-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+    margin-top: 6px;
+  }
+
+  /* ── REKAP / HIGHLIGHT ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── METODOLOGI ── */
+  .metodologi-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    border-top: 4px solid var(--teks-ringan);
+    font-size: 12px;
+    color: var(--teks-ringan);
+    line-height: 1.7;
+  }
+  .metodologi-card strong { color: var(--teks); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--hijau-gelap);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  .mb-24 { margin-bottom: 24px; }
+
+  @media (max-width: 700px) {
+    .header-inner { flex-direction: column; }
+    .ringkasan-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 24px 20px; }
+    .container { padding: 24px 14px 48px; }
+    .kb-label { width: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header class="header">
+  <svg class="header-deco" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 20 C100 20 30 80 30 160 C30 220 80 270 150 280 C220 270 270 220 270 160 C270 80 200 20 150 20Z" fill="white"/>
+    <path d="M150 20 L150 280" stroke="white" stroke-width="3"/>
+    <path d="M150 80 C120 100 90 130 80 170" stroke="white" stroke-width="2"/>
+    <path d="M150 120 C170 140 190 165 200 200" stroke="white" stroke-width="2"/>
+    <path d="M150 160 C130 170 110 185 100 210" stroke="white" stroke-width="2"/>
+    <path d="M150 200 C165 208 180 220 190 240" stroke="white" stroke-width="2"/>
+  </svg>
+
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-eyebrow">Departemen KSHE · Fakultas Kehutanan dan Lingkungan · IPB University</div>
+      <h1 class="header-title">Survei Kepuasan Mitra Kerjasama<br>terhadap Kolaborasi dengan Program Studi</h1>
+      <div class="header-subtitle">Tahun Akademik 2024/2025 · 1 Aspek Penilaian · 8 Indikator · n = 30 Responden</div>
+    </div>
+    <div>
+      <div class="header-score-box">
+        <div class="score-label">Indeks Komposit</div>
+        <div class="score-value">3,24</div>
+        <div><span class="score-kategori">Baik</span></div>
+        <div class="header-meta">dari skala 4,00</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════ CONTAINER ══════════════════════════ -->
+<main class="container">
+
+  <!-- ── Ringkasan Responden ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Ringkasan Responden</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="ringkasan-grid mb-24">
+    <div class="stat-card">
+      <div class="stat-num">30</div>
+      <div class="stat-desc">Total Responden Mitra Kerjasama</div>
+    </div>
+    <div class="stat-card biru">
+      <div class="stat-num">8</div>
+      <div class="stat-desc">Indikator penilaian kepuasan terhadap kerjasama</div>
+    </div>
+    <div class="stat-card coral">
+      <div class="stat-num">100%</div>
+      <div class="stat-desc">Mitra bersedia <strong>melanjutkan kerjasama</strong> di masa mendatang</div>
+    </div>
+    <div class="stat-card kuning">
+      <div class="stat-num">3,24</div>
+      <div class="stat-desc">Indeks komposit kepuasan<br><span style="color:var(--hijau-mid);font-weight:700;">Baik</span></div>
+    </div>
+  </div>
+
+  <!-- ── Sebaran Sektor Mitra ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Sebaran Sektor Mitra</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="sektor-grid mb-24">
+    <div class="sektor-card">
+      <div class="sektor-label">Kehutanan / Kawasan Konservasi</div>
+      <div class="sektor-num">8</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">Pariwisata / Ekowisata</div>
+      <div class="sektor-num">5</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">NGO / Lembaga Non-Pemerintah</div>
+      <div class="sektor-num">3</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">Penelitian / Bioteknologi</div>
+      <div class="sektor-num">3</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">Lembaga Pemerintah</div>
+      <div class="sektor-num">3</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">Pertanian, Perkebunan, Perikanan</div>
+      <div class="sektor-num">1</div>
+    </div>
+    <div class="sektor-card">
+      <div class="sektor-label">Konsultan</div>
+      <div class="sektor-num">1</div>
+    </div>
+    <div class="sektor-card" style="border-top-color:var(--teks-ringan)">
+      <div class="sektor-label">Lainnya / Tidak diisi</div>
+      <div class="sektor-num">6</div>
+    </div>
+  </div>
+
+  <!-- ── Kesediaan Melanjutkan Kerjasama ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Kesediaan Melanjutkan Kerjasama</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="kepuasan-card mb-24">
+    <div class="kepuasan-title">Apakah mitra bersedia melanjutkan kerjasama di masa mendatang? (n = 30)</div>
+    <div class="kepuasan-bars">
+      <!-- Ya, Sangat Bersedia: 24 = 80,0% -->
+      <div class="kb-row">
+        <div class="kb-label">Ya, Sangat Bersedia</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:80%;background:var(--hijau-terang)">
+            <span>80,0%</span>
+          </div>
+        </div>
+        <div class="kb-count">24</div>
+      </div>
+      <!-- Bersedia, dengan perbaikan: 6 = 20,0% -->
+      <div class="kb-row">
+        <div class="kb-label">Bersedia, dengan Perbaikan</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:20%;background:var(--biru)">
+            <span>20,0%</span>
+          </div>
+        </div>
+        <div class="kb-count">6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ASPEK PENILAIAN ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Aspek Penilaian Kepuasan terhadap Kerjasama</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="aspek-section">
+    <div class="aspek-header-row">
+      <div class="aspek-title">Kepuasan terhadap Kerjasama dengan Program Studi</div>
+      <div>
+        <span class="aspek-skor-badge">3,24</span>
+        <span class="aspek-skor-kat">Baik · 8 indikator</span>
+      </div>
+    </div>
+    <div class="indikator-list">
+
+      <!-- 2.1 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.1</span>
+            <span class="ind-name">Komunikasi dan koordinasi awal</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:26.7%"></div>
+            <div class="dist-seg c-b"  style="width:66.7%"></div>
+            <div class="dist-seg c-c"  style="width:6.7%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 8 (26,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 20 (66,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 2 (6,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,20</div>
+          <div class="ind-kat">Baik</div>
+        </div>
+      </div>
+
+      <!-- 2.2 — tertinggi -->
+      <div class="ind-card high">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.2</span>
+            <span class="ind-name">Kejelasan perjanjian kerjasama (hak dan kewajiban)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:40.0%"></div>
+            <div class="dist-seg c-b"  style="width:60.0%"></div>
+            <div class="dist-seg c-c"  style="width:0%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 12 (40,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 18 (60,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 0 (0,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--kuning)">3,40</div>
+          <div class="ind-kat" style="color:#b36800;">Sangat Baik · Tertinggi</div>
+        </div>
+      </div>
+
+      <!-- 2.3 — terendah (tied) -->
+      <div class="ind-card low">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.3</span>
+            <span class="ind-name">Profesionalisme tim dari program studi</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:33.3%"></div>
+            <div class="dist-seg c-b"  style="width:46.7%"></div>
+            <div class="dist-seg c-c"  style="width:20.0%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 10 (33,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 14 (46,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 6 (20,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--coral)">3,13</div>
+          <div class="ind-kat" style="color:var(--coral)">Baik · Terendah</div>
+        </div>
+      </div>
+
+      <!-- 2.4 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.4</span>
+            <span class="ind-name">Ketepatan waktu pelaksanaan kegiatan</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:26.7%"></div>
+            <div class="dist-seg c-b"  style="width:66.7%"></div>
+            <div class="dist-seg c-c"  style="width:6.7%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 8 (26,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 20 (66,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 2 (6,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,20</div>
+          <div class="ind-kat">Baik</div>
+        </div>
+      </div>
+
+      <!-- 2.5 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.5</span>
+            <span class="ind-name">Kualitas luaran/hasil kerjasama</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:33.3%"></div>
+            <div class="dist-seg c-b"  style="width:66.7%"></div>
+            <div class="dist-seg c-c"  style="width:0%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 10 (33,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 20 (66,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 0 (0,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,33</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- 2.6 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.6</span>
+            <span class="ind-name">Manfaat yang dirasakan oleh institusi mitra</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:40.0%"></div>
+            <div class="dist-seg c-b"  style="width:53.3%"></div>
+            <div class="dist-seg c-c"  style="width:6.7%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 12 (40,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 16 (53,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 2 (6,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,33</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- 2.7 — terendah (tied) -->
+      <div class="ind-card low">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.7</span>
+            <span class="ind-name">Tindak lanjut dan keberlanjutan kerjasama</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:33.3%"></div>
+            <div class="dist-seg c-b"  style="width:46.7%"></div>
+            <div class="dist-seg c-c"  style="width:20.0%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 10 (33,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 14 (46,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 6 (20,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--coral)">3,13</div>
+          <div class="ind-kat" style="color:var(--coral)">Baik · Terendah</div>
+        </div>
+      </div>
+
+      <!-- 2.8 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">2.8</span>
+            <span class="ind-name">Kemudahan akses informasi dan dokumentasi</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:40.0%"></div>
+            <div class="dist-seg c-b"  style="width:40.0%"></div>
+            <div class="dist-seg c-c"  style="width:20.0%"></div>
+            <div class="dist-seg c-k"  style="width:0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 12 (40,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 12 (40,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 6 (20,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 0 (0,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,20</div>
+          <div class="ind-kat">Baik</div>
+        </div>
+      </div>
+
+    </div><!-- /indikator-list -->
+  </div><!-- /aspek -->
+
+  <!-- ══════════ REKAPITULASI ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Rekapitulasi dan Temuan</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="two-col mb-24">
+    <!-- Tabel rekapitulasi -->
+    <div style="background:var(--putih);border-radius:10px;padding:20px;border-top:4px solid var(--hijau-gelap);">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--hijau-gelap)">Skor per Indikator</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--bg);">
+            <th style="text-align:left;padding:6px 0;color:var(--teks-ringan);font-weight:600">Indikator</th>
+            <th style="text-align:right;padding:6px 0;color:var(--teks-ringan);font-weight:600">Skor</th>
+            <th style="text-align:right;padding:6px 0;color:var(--teks-ringan);font-weight:600">Kategori</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.1 Komunikasi awal</td><td style="text-align:right;padding:7px 0;font-weight:700;">3,20</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.2 Kejelasan perjanjian</td><td style="text-align:right;padding:7px 0;font-weight:700;color:#b36800">3,40</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Sangat Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.3 Profesionalisme tim</td><td style="text-align:right;padding:7px 0;font-weight:700;color:var(--coral)">3,13</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.4 Ketepatan waktu</td><td style="text-align:right;padding:7px 0;font-weight:700;">3,20</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.5 Kualitas luaran</td><td style="text-align:right;padding:7px 0;font-weight:700;">3,33</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Sangat Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.6 Manfaat bagi mitra</td><td style="text-align:right;padding:7px 0;font-weight:700;">3,33</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Sangat Baik</td></tr>
+          <tr style="border-bottom:1px solid var(--bg);"><td style="padding:7px 0;">2.7 Tindak lanjut</td><td style="text-align:right;padding:7px 0;font-weight:700;color:var(--coral)">3,13</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Baik</td></tr>
+          <tr style="border-bottom:2px solid var(--bg);"><td style="padding:7px 0;">2.8 Akses informasi</td><td style="text-align:right;padding:7px 0;font-weight:700;">3,20</td><td style="text-align:right;padding:7px 0;color:var(--teks-ringan)">Baik</td></tr>
+          <tr style="border-bottom:2px solid var(--hijau-gelap);">
+            <td style="padding:10px 0;font-weight:700;color:var(--hijau-gelap)">Indeks Komposit</td>
+            <td style="text-align:right;padding:10px 0;font-weight:700;font-size:15px;color:var(--hijau-gelap)">3,24</td>
+            <td style="text-align:right;padding:10px 0;color:var(--hijau-mid);font-weight:700">Baik</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Highlight temuan -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--kuning)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#b36800;margin-bottom:6px">⭐ Indikator Tertinggi</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">2.2 — Kejelasan Perjanjian Kerjasama</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">Skor 3,40 · seluruh mitra menilai Baik atau Sangat Baik, tanpa nilai Cukup/Kurang</div>
+      </div>
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--coral)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);margin-bottom:6px">⚠ Indikator Perlu Perhatian</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">2.3 & 2.7 — Profesionalisme Tim, Tindak Lanjut</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">Skor 3,13 · masing-masing 20% mitra menilai Cukup</div>
+      </div>
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--hijau-terang)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--hijau-mid);margin-bottom:6px">Kesediaan Berkelanjutan</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">100% Mitra Bersedia Melanjutkan</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">80% sangat bersedia, 20% bersedia dengan perbaikan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ METODOLOGI ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Catatan Metodologi</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="metodologi-card">
+    <strong>Responden:</strong> n = 30 mitra kerjasama institusi/lembaga/perusahaan Departemen KSHE, IPB University.<br>
+    <strong>Skala:</strong> Sangat Baik = 4, Baik = 3, Cukup = 2, Kurang = 1.<br>
+    <strong>Kategori indeks:</strong> Kurang (1,00–1,74) · Cukup (1,75–2,49) · Baik (2,50–3,24) · Sangat Baik (3,25–4,00).<br>
+    <strong>Skor indikator:</strong> rata-rata aritmatika dari seluruh jawaban valid (n = 30) untuk setiap indikator.<br>
+    <strong>Indeks komposit:</strong> rata-rata aritmatika dari seluruh jawaban valid 8 indikator (240 titik data dari 30 responden) = 3,2417, dibulatkan menjadi 3,24 (Baik).<br>
+    <strong>Catatan data:</strong> satu responden (baris pertama berkas) mengisi seluruh penilaian 8 indikator secara lengkap namun tidak mencantumkan identitas lembaga/nama; jawaban tetap diikutsertakan dalam perhitungan karena data penilaian valid. Dua entri lain berasal dari responden yang sama (IPB University, an. Devina Valianti) dengan dua jenis kerjasama berbeda dan jawaban yang juga berbeda, sehingga kedua entri tetap dihitung sebagai pengisian terpisah.<br>
+    <strong>Sektor mitra:</strong> dikelompokkan dari isian teks bebas "Bidang usaha/sektor" ke kategori tematik terdekat (Kehutanan/Kawasan Konservasi, Pariwisata/Ekowisata, NGO, Penelitian/Bioteknologi, Lembaga Pemerintah, dll.) untuk kebutuhan visualisasi; pengelompokan ini bersifat interpretatif dan dapat berbeda dari kategorisasi resmi.<br>
+    <strong>Kesediaan melanjutkan kerjasama:</strong> diukur dengan skala persepsi tersendiri (Ya, Sangat Bersedia / Bersedia dengan Perbaikan) dan tidak diikutsertakan dalam perhitungan indeks komposit.<br>
+    <strong>Saran terbuka:</strong> berupa teks bebas (10 dari 30 responden mengisi), tidak dikuantifikasi dalam infografis ini.
+  </div>
+
+</main>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer>
+  <strong>Departemen Konservasi Sumberdaya Hutan dan Ekowisata (KSHE)</strong><br>
+  Fakultas Kehutanan dan Lingkungan · IPB University · Bogor<br>
+  <span style="margin-top:4px;display:inline-block">Survei Kepuasan Mitra Kerjasama · Tahun Akademik 2024/2025</span>
+</footer>
+
+</body>
+</html>
