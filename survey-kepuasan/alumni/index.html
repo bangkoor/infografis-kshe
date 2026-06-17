@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Survei Kepuasan Alumni – KSHE IPB University</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#F2EFE8; --green-dark:#085041; --green-mid:#0F6E56; --green-light:#1D9E75;
+  --blue:#378ADD; --yellow:#EF9F27; --coral:#D85A30; --purple:#7F77DD; --pink:#D4537E;
+  --white:#ffffff; --text:#1a2520; --text-muted:#5a6b65;
+  --font:'Arial','Helvetica Neue',Helvetica,sans-serif;
+}
+body { font-family:var(--font); background:var(--bg); color:var(--text); }
+
+/* ── HEADER ── */
+.header { background:var(--green-dark); color:white; position:relative; overflow:hidden; }
+.header-inner { max-width:1000px; margin:0 auto; padding:0 32px; display:flex; align-items:stretch; }
+.header-left { flex:1; padding:36px 32px 32px 0; }
+.eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.eyebrow span { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--green-light); white-space:nowrap; }
+.eyebrow::after { content:''; flex:1; height:1px; background:rgba(29,158,117,.3); }
+.header h1 { font-size:27px; font-weight:700; line-height:1.22; letter-spacing:-.3px; margin-bottom:5px; }
+.header-sub { font-size:13px; color:rgba(255,255,255,.6); }
+.header-pill { display:inline-block; background:var(--green-light); color:white; font-size:10.5px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 11px; border-radius:3px; margin-top:14px; }
+.header-scores { display:flex; border-left:1px solid rgba(255,255,255,.1); }
+.score-box { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:28px 22px; gap:3px; min-width:110px; }
+.score-box+.score-box { border-left:1px solid rgba(255,255,255,.08); }
+.score-lbl { font-size:9.5px; letter-spacing:1.3px; text-transform:uppercase; color:rgba(255,255,255,.45); text-align:center; line-height:1.4; }
+.score-val { font-size:44px; font-weight:700; line-height:1; letter-spacing:-2px; color:var(--yellow); }
+.score-sub { font-size:11px; color:rgba(255,255,255,.35); }
+.score-badge { background:var(--yellow); color:var(--green-dark); font-size:10px; font-weight:700; letter-spacing:.5px; padding:3px 10px; border-radius:20px; margin-top:2px; }
+.leaf-bg { position:absolute; right:-20px; top:0; bottom:0; width:220px; opacity:.05; pointer-events:none; }
+
+/* ── MAIN ── */
+.main { max-width:1000px; margin:0 auto; padding:32px 32px 0; }
+.sec { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.sec span { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--green-mid); white-space:nowrap; }
+.sec::after { content:''; flex:1; height:1.5px; background:linear-gradient(to right, var(--green-light), transparent); }
+
+/* ── STAT ROW ── */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:28px; }
+.stat-card { background:var(--white); border-top:4px solid var(--green-light); border-radius:6px; padding:16px 18px; }
+.stat-card.blue  { border-top-color:var(--blue); }
+.stat-card.yel   { border-top-color:var(--yellow); }
+.stat-card.coral { border-top-color:var(--coral); }
+.stat-v { font-size:30px; font-weight:700; line-height:1; letter-spacing:-1px; color:var(--green-dark); }
+.stat-card.blue  .stat-v { color:var(--blue); }
+.stat-card.yel   .stat-v { color:var(--yellow); }
+.stat-card.coral .stat-v { color:var(--coral); }
+.stat-l { font-size:10.5px; color:var(--text-muted); line-height:1.4; margin-top:5px; }
+
+/* ── LEGEND ── */
+.legend { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:10px; }
+.leg-item { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text-muted); }
+.leg-dot { width:10px; height:10px; border-radius:2px; }
+
+/* ── ASPEK CARDS ── */
+.aspek-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+.aspek-card { background:var(--white); border-radius:6px; padding:18px 20px 16px; border-left:5px solid var(--green-light); }
+.aspek-card.b-card { border-left-color:var(--blue); }
+.aspek-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; gap:10px; }
+.aspek-meta { display:flex; align-items:flex-start; gap:10px; flex:1; }
+.aspek-badge { width:26px; height:26px; border-radius:50%; background:var(--green-dark); color:white; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.aspek-card.b-card .aspek-badge { background:var(--blue); }
+.aspek-title { font-size:12px; font-weight:700; line-height:1.35; }
+.aspek-score-big { font-size:26px; font-weight:700; letter-spacing:-1px; color:var(--green-dark); line-height:1; white-space:nowrap; }
+.aspek-card.b-card .aspek-score-big { color:var(--blue); }
+.aspek-of4 { font-size:11px; font-weight:400; color:var(--text-muted); }
+.ind-list { display:flex; flex-direction:column; gap:7px; }
+.ind-row { display:flex; align-items:center; gap:8px; }
+.ind-code { font-size:9.5px; font-weight:700; color:var(--text-muted); width:24px; flex-shrink:0; }
+.ind-label { font-size:10.5px; color:var(--text); flex:1; line-height:1.3; }
+.ind-right { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.ind-bar-track { width:70px; height:7px; background:#eee; border-radius:4px; overflow:hidden; }
+.ind-bar-fill { height:100%; border-radius:4px; background:var(--green-light); }
+.aspek-card.b-card .ind-bar-fill { background:var(--blue); }
+.ind-score { font-size:10.5px; font-weight:700; color:var(--text-muted); width:28px; text-align:right; }
+
+/* ── KOMPOSIT ── */
+.komposit-card { background:var(--white); border-left:6px solid var(--green-dark); border-radius:6px; padding:22px 26px; margin-bottom:28px; }
+.komposit-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:14px; }
+.komposit-body { display:flex; align-items:center; gap:20px; }
+.komposit-num { font-size:44px; font-weight:700; letter-spacing:-2px; color:var(--green-dark); line-height:1; }
+.komposit-num span { font-size:15px; font-weight:400; color:var(--text-muted); }
+.komposit-bar-wrap { flex:1; }
+.komposit-track { height:18px; background:#eee; border-radius:9px; overflow:hidden; margin-bottom:6px; }
+.komposit-fill { height:100%; background:linear-gradient(90deg,var(--green-dark),var(--green-light)); border-radius:9px; width:88.2%; }
+.komposit-ticks { display:flex; justify-content:space-between; font-size:9px; color:var(--text-muted); }
+.komposit-scale { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.scale-item { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--text-muted); }
+.scale-dot { width:10px; height:10px; border-radius:2px; background:#ddd; flex-shrink:0; }
+.scale-item.active .scale-dot { background:var(--green-light); }
+.scale-item.active span { font-weight:700; color:var(--green-dark); }
+
+/* ── STRIP PERBANDINGAN ── */
+.aspek-strip { background:var(--white); border-radius:6px; padding:20px 22px; margin-bottom:28px; }
+.strip-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-muted); margin-bottom:16px; }
+.strip-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.strip-label { font-size:11px; width:240px; flex-shrink:0; color:var(--text); }
+.strip-track { flex:1; height:22px; background:#f0ede8; border-radius:4px; overflow:hidden; }
+.strip-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:8px; font-size:10.5px; font-weight:700; color:white; }
+.strip-val { font-size:11px; font-weight:700; color:var(--text-muted); width:36px; flex-shrink:0; text-align:right; }
+.strip-rank { font-size:9px; font-weight:700; padding:2px 6px; border-radius:10px; flex-shrink:0; width:26px; text-align:center; }
+.rank-best { background:#d4f0e4; color:var(--green-dark); }
+.rank-low  { background:#fde8e0; color:var(--coral); }
+.rank-mid  { background:#f0ede8; color:var(--text-muted); }
+
+/* ── BOTTOM GRID ── */
+.bottom-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+
+/* kepuasan */
+.kep-card { background:var(--white); border-radius:6px; padding:20px 22px; border-top:4px solid var(--yellow); }
+.kep-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:14px; }
+.kep-row { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
+.kep-lbl { font-size:11px; width:90px; font-weight:600; flex-shrink:0; }
+.kep-track { flex:1; height:26px; background:#f0ede8; border-radius:4px; overflow:hidden; }
+.kep-fill { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:9px; font-size:11px; font-weight:700; color:white; }
+.kep-fill.sp { background:var(--green-light); }
+.kep-fill.p  { background:var(--blue); }
+.kep-fill.cp { background:var(--yellow); }
+.kep-pct { font-size:11px; font-weight:700; color:var(--text-muted); width:38px; text-align:right; flex-shrink:0; }
+.kep-note { font-size:10.5px; color:var(--text-muted); line-height:1.5; margin-top:12px; }
+.kep-note strong { color:var(--green-dark); }
+
+/* profil tahun lulus */
+.profil-card { background:var(--white); border-radius:6px; padding:20px 22px; border-top:4px solid var(--purple); }
+.profil-title { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-muted); margin-bottom:14px; }
+.yr-list { display:flex; flex-direction:column; gap:6px; }
+.yr-row { display:flex; align-items:center; gap:8px; }
+.yr-lbl { font-size:11px; width:40px; flex-shrink:0; font-weight:600; }
+.yr-track { flex:1; height:18px; background:#f0ede8; border-radius:3px; overflow:hidden; }
+.yr-fill { height:100%; border-radius:3px; display:flex; align-items:center; padding-left:7px; font-size:10px; font-weight:700; color:white; }
+.yr-n { font-size:10.5px; font-weight:700; color:var(--text-muted); width:28px; text-align:right; flex-shrink:0; }
+.era-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:14px; }
+.era-box { background:#f5f2ec; border-radius:4px; padding:8px 10px; text-align:center; border-top:3px solid #ccc; }
+.era-box.e1 { border-top-color:var(--coral); }
+.era-box.e2 { border-top-color:var(--blue); }
+.era-box.e3 { border-top-color:var(--green-light); }
+.era-n { font-size:20px; font-weight:700; color:var(--green-dark); line-height:1; }
+.era-box.e1 .era-n { color:var(--coral); }
+.era-box.e2 .era-n { color:var(--blue); }
+.era-box.e3 .era-n { color:var(--green-light); }
+.era-l { font-size:9.5px; color:var(--text-muted); margin-top:3px; }
+
+/* ── HIGHLIGHTS ── */
+.hl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+.hl { background:var(--white); border-radius:6px; padding:16px 18px; border-left:4px solid var(--blue); }
+.hl.y  { border-left-color:var(--yellow); }
+.hl.co { border-left-color:var(--coral); }
+.hl-icon { font-size:18px; margin-bottom:6px; }
+.hl-ttl { font-size:11px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.hl-txt { font-size:10.5px; color:var(--text-muted); line-height:1.5; }
+
+/* ── KESIMPULAN ── */
+.kesimpulan { background:var(--green-dark); color:white; border-radius:6px; padding:22px 26px; margin-bottom:28px; }
+.k-hdr { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green-light); margin-bottom:10px; }
+.k-txt { font-size:12.5px; line-height:1.7; color:rgba(255,255,255,.85); }
+.k-txt strong { color:var(--yellow); }
+
+/* ── FOOTER ── */
+footer { background:var(--green-dark); color:rgba(255,255,255,.6); padding:18px 32px; font-size:10.5px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+footer strong { color:rgba(255,255,255,.9); }
+footer .fr { color:rgba(255,255,255,.4); font-size:10px; }
+
+@media(max-width:680px){
+  .aspek-grid,.bottom-grid,.hl-grid,.stat-row { grid-template-columns:1fr; }
+  .header-scores { display:none; }
+  .komposit-body { flex-direction:column; align-items:flex-start; }
+  .main { padding:20px 16px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <svg class="leaf-bg" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M110 320 C110 320 200 230 200 140 C200 70 160 22 110 10 C60 22 20 70 20 140 C20 230 110 320 110 320Z" fill="white"/>
+    <line x1="110" y1="320" x2="110" y2="10" stroke="white" stroke-width="3"/>
+    <line x1="110" y1="240" x2="168" y2="195" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="215" x2="57"  y2="175" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="185" x2="162" y2="147" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="160" x2="63"  y2="127" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="135" x2="153" y2="103" stroke="white" stroke-width="1.5"/>
+    <line x1="110" y1="110" x2="70"  y2="82"  stroke="white" stroke-width="1.5"/>
+  </svg>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="eyebrow"><span>Departemen KSHE · IPB University</span></div>
+      <h1>Survei Kepuasan Alumni<br>Lulusan Program Studi</h1>
+      <div class="header-sub">Fakultas Kehutanan dan Lingkungan · 2 Aspek Layanan · 11 Indikator</div>
+      <div class="header-pill">Lulusan 2015 – 2026</div>
+    </div>
+    <div class="header-scores">
+      <div class="score-box">
+        <div class="score-lbl">Indeks<br>Komposit</div>
+        <div class="score-val">3,53</div>
+        <div class="score-sub">dari 4,00</div>
+        <div class="score-badge">✦ Sangat Baik</div>
+      </div>
+      <div class="score-box">
+        <div class="score-lbl">Total<br>Responden</div>
+        <div class="score-val" style="font-size:38px">193</div>
+        <div class="score-sub">alumni</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- STAT ROW -->
+  <div style="margin-top:4px;margin-bottom:18px;"><div class="sec"><span>Ringkasan Partisipasi &amp; Profil Alumni</span></div></div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-v">193</div>
+      <div class="stat-l">Alumni mengisi survei</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-v">11</div>
+      <div class="stat-l">Indikator dinilai (2 aspek)</div>
+    </div>
+    <div class="stat-card yel">
+      <div class="stat-v">98,4%</div>
+      <div class="stat-l">Puas atau Sangat Puas secara keseluruhan</div>
+    </div>
+    <div class="stat-card coral">
+      <div class="stat-v">12</div>
+      <div class="stat-l">Angkatan lulusan (2015–2026)</div>
+    </div>
+  </div>
+
+  <!-- ASPEK LAYANAN -->
+  <div class="sec"><span>Penilaian per Aspek &amp; Indikator</span></div>
+  <div style="margin-bottom:10px;">
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green-light)"></div>Sangat Baik (4)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--blue)"></div>Baik (3)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--yellow)"></div>Cukup (2)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--coral)"></div>Kurang (1)</div>
+      <div class="leg-item" style="margin-left:auto;"><div class="leg-dot" style="background:#ccc"></div>Bar = proporsi skor /4,00 · n=193</div>
+    </div>
+  </div>
+
+  <div class="aspek-grid">
+
+    <!-- ASPEK A -->
+    <div class="aspek-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">A</div>
+          <div class="aspek-title">Layanan Akademik</div>
+        </div>
+        <div class="aspek-score-big">3,61<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row">
+          <div class="ind-code">A.1</div>
+          <div class="ind-label">Kualitas pembelajaran di kelas<br><span style="font-size:9px;color:var(--text-muted)">SB:131 · B:58 · C:4 · K:0</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.5%"></div></div>
+            <div class="ind-score">3,66</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.2</div>
+          <div class="ind-label">Ketersediaan bahan ajar &amp; referensi<br><span style="font-size:9px;color:var(--text-muted)">SB:131 · B:57 · C:5 · K:0</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:91.3%"></div></div>
+            <div class="ind-score">3,65</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.3</div>
+          <div class="ind-label">Kualitas laboratorium &amp; fasilitas praktikum<br><span style="font-size:9px;color:var(--text-muted)">SB:105 · B:67 · C:19 · K:2</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:85.6%"></div></div>
+            <div class="ind-score">3,42</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.4</div>
+          <div class="ind-label">Kualitas bimbingan tugas akhir<br><span style="font-size:9px;color:var(--text-muted)">SB:141 · B:47 · C:5 · K:0</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:92.6%"></div></div>
+            <div class="ind-score">3,70</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.5</div>
+          <div class="ind-label">Keadilan &amp; transparansi sistem penilaian<br><span style="font-size:9px;color:var(--text-muted)">SB:121 · B:60 · C:12 · K:0</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:89.1%"></div></div>
+            <div class="ind-score">3,56</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.6</div>
+          <div class="ind-label">Kemudahan akses informasi akademik (SIAKAD)<br><span style="font-size:9px;color:var(--text-muted)">SB:145 · B:43 · C:5 · K:0</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:93.1%"></div></div>
+            <div class="ind-score">3,73</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">A.7</div>
+          <div class="ind-label">Dukungan publikasi ilmiah (S2/S3)<br><span style="font-size:9px;color:var(--text-muted)">SB:116 · B:66 · C:10 · K:1</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:88.5%"></div></div>
+            <div class="ind-score">3,54</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASPEK B -->
+    <div class="aspek-card b-card">
+      <div class="aspek-head">
+        <div class="aspek-meta">
+          <div class="aspek-badge">B</div>
+          <div class="aspek-title">Layanan Non-Akademik</div>
+        </div>
+        <div class="aspek-score-big">3,39<span class="aspek-of4">/4</span></div>
+      </div>
+      <div class="ind-list">
+        <div class="ind-row">
+          <div class="ind-code">B.1</div>
+          <div class="ind-label">Layanan kemahasiswaan (beasiswa, bimbingan karir)<br><span style="font-size:9px;color:var(--text-muted)">SB:119 · B:59 · C:12 · K:3</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:88.1%"></div></div>
+            <div class="ind-score">3,52</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">B.2</div>
+          <div class="ind-label">Fasilitas minat bakat (UKM, organisasi)<br><span style="font-size:9px;color:var(--text-muted)">SB:114 · B:64 · C:12 · K:3</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:87.4%"></div></div>
+            <div class="ind-score">3,50</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">B.3</div>
+          <div class="ind-label">Fasilitas umum (perpustakaan, kantin, toilet, ibadah)<br><span style="font-size:9px;color:var(--text-muted)">SB:92 · B:66 · C:30 · K:5</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:81.7%"></div></div>
+            <div class="ind-score">3,27</div>
+          </div>
+        </div>
+        <div class="ind-row">
+          <div class="ind-code">B.4</div>
+          <div class="ind-label">Akses &amp; kualitas internet / WiFi<br><span style="font-size:9px;color:var(--text-muted)">SB:95 · B:61 · C:29 · K:8</span></div>
+          <div class="ind-right">
+            <div class="ind-bar-track"><div class="ind-bar-fill" style="width:81.5%"></div></div>
+            <div class="ind-score">3,26</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:9px 11px;background:#f0f4fb;border-radius:4px;font-size:10px;color:var(--text-muted);line-height:1.45;">
+        ⚑ B.3 dan B.4 merupakan indikator dengan skor terendah dalam survei ini — menjadi prioritas perbaikan utama.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KOMPOSIT -->
+  <div class="komposit-card">
+    <div class="komposit-title">Indeks Kepuasan Komposit — Rata-rata 11 Indikator (2 Aspek Layanan)</div>
+    <div class="komposit-body">
+      <div class="komposit-num">3,53<span> /4,00</span></div>
+      <div class="komposit-bar-wrap">
+        <div class="komposit-track"><div class="komposit-fill"></div></div>
+        <div class="komposit-ticks"><span>1,00</span><span>2,00</span><span>3,00</span><span>4,00</span></div>
+      </div>
+    </div>
+    <div class="komposit-scale">
+      <div class="scale-item"><div class="scale-dot"></div><span>Kurang (1,00–1,74)</span></div>
+      <div class="scale-item"><div class="scale-dot"></div><span>Cukup (1,75–2,49)</span></div>
+      <div class="scale-item"><div class="scale-dot"></div><span>Baik (2,50–3,24)</span></div>
+      <div class="scale-item active"><div class="scale-dot"></div><span>Sangat Baik (3,25–4,00) ← posisi saat ini</span></div>
+    </div>
+  </div>
+
+  <!-- STRIP INDIKATOR -->
+  <div class="aspek-strip">
+    <div class="strip-title">Peringkat Skor Seluruh Indikator (dari 4,00)</div>
+
+    <div class="strip-row">
+      <div class="strip-label">A.6 — Akses informasi akademik (SIAKAD)</div>
+      <div class="strip-track"><div class="strip-fill" style="width:93.1%;background:var(--green-light)">3,73</div></div>
+      <div class="strip-val">3,73</div><div class="strip-rank rank-best">★ 1</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.4 — Kualitas bimbingan tugas akhir</div>
+      <div class="strip-track"><div class="strip-fill" style="width:92.6%;background:var(--green-light)">3,70</div></div>
+      <div class="strip-val">3,70</div><div class="strip-rank rank-best">★ 2</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.1 — Kualitas pembelajaran di kelas</div>
+      <div class="strip-track"><div class="strip-fill" style="width:91.5%;background:var(--green-light)">3,66</div></div>
+      <div class="strip-val">3,66</div><div class="strip-rank rank-mid">3</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.2 — Bahan ajar &amp; referensi</div>
+      <div class="strip-track"><div class="strip-fill" style="width:91.3%;background:var(--green-light)">3,65</div></div>
+      <div class="strip-val">3,65</div><div class="strip-rank rank-mid">4</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.5 — Transparansi sistem penilaian</div>
+      <div class="strip-track"><div class="strip-fill" style="width:89.1%;background:var(--green-mid)">3,56</div></div>
+      <div class="strip-val">3,56</div><div class="strip-rank rank-mid">5</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.7 — Dukungan publikasi ilmiah</div>
+      <div class="strip-track"><div class="strip-fill" style="width:88.5%;background:var(--green-mid)">3,54</div></div>
+      <div class="strip-val">3,54</div><div class="strip-rank rank-mid">6</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">B.1 — Layanan kemahasiswaan &amp; karir</div>
+      <div class="strip-track"><div class="strip-fill" style="width:88.1%;background:var(--blue)">3,52</div></div>
+      <div class="strip-val">3,52</div><div class="strip-rank rank-mid">7</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">B.2 — Fasilitas minat bakat &amp; UKM</div>
+      <div class="strip-track"><div class="strip-fill" style="width:87.4%;background:var(--blue)">3,50</div></div>
+      <div class="strip-val">3,50</div><div class="strip-rank rank-mid">8</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">A.3 — Laboratorium &amp; fasilitas praktikum</div>
+      <div class="strip-track"><div class="strip-fill" style="width:85.6%;background:var(--yellow)">3,42</div></div>
+      <div class="strip-val">3,42</div><div class="strip-rank rank-mid">9</div>
+    </div>
+    <div class="strip-row">
+      <div class="strip-label">B.3 — Fasilitas umum (kantin, ibadah, toilet)</div>
+      <div class="strip-track"><div class="strip-fill" style="width:81.7%;background:var(--coral)">3,27</div></div>
+      <div class="strip-val">3,27</div><div class="strip-rank rank-low">▼10</div>
+    </div>
+    <div class="strip-row" style="margin-bottom:0">
+      <div class="strip-label">B.4 — Akses &amp; kualitas internet / WiFi</div>
+      <div class="strip-track"><div class="strip-fill" style="width:81.5%;background:var(--coral)">3,26</div></div>
+      <div class="strip-val">3,26</div><div class="strip-rank rank-low">▼11</div>
+    </div>
+  </div>
+
+  <!-- KEPUASAN + PROFIL -->
+  <div class="sec"><span>Kepuasan Keseluruhan &amp; Profil Alumni</span></div>
+  <div class="bottom-grid">
+
+    <div class="kep-card">
+      <div class="kep-title">Kepuasan terhadap Pengalaman Studi di Program Studi</div>
+      <div class="kep-row">
+        <div class="kep-lbl">Sangat Puas</div>
+        <div class="kep-track"><div class="kep-fill sp" style="width:64.8%">125</div></div>
+        <div class="kep-pct">64,8%</div>
+      </div>
+      <div class="kep-row">
+        <div class="kep-lbl">Puas</div>
+        <div class="kep-track"><div class="kep-fill p" style="width:33.7%">65</div></div>
+        <div class="kep-pct">33,7%</div>
+      </div>
+      <div class="kep-row">
+        <div class="kep-lbl">Cukup Puas</div>
+        <div class="kep-track"><div class="kep-fill cp" style="width:1.6%">3</div></div>
+        <div class="kep-pct">1,6%</div>
+      </div>
+      <div class="kep-note">
+        <strong>98,4%</strong> alumni menyatakan Puas atau Sangat Puas terhadap pengalaman studi di Departemen KSHE. Tidak ada yang menyatakan Tidak Puas.
+      </div>
+    </div>
+
+    <div class="profil-card">
+      <div class="profil-title">Sebaran Tahun Kelulusan Responden</div>
+      <div class="yr-list">
+        <div class="yr-row"><div class="yr-lbl">2020</div><div class="yr-track"><div class="yr-fill" style="width:100%;background:var(--blue)">35</div></div><div class="yr-n">35</div></div>
+        <div class="yr-row"><div class="yr-lbl">2024</div><div class="yr-track"><div class="yr-fill" style="width:94.3%;background:var(--green-light)">33</div></div><div class="yr-n">33</div></div>
+        <div class="yr-row"><div class="yr-lbl">2021</div><div class="yr-track"><div class="yr-fill" style="width:80%;background:var(--blue)">28</div></div><div class="yr-n">28</div></div>
+        <div class="yr-row"><div class="yr-lbl">2025</div><div class="yr-track"><div class="yr-fill" style="width:80%;background:var(--green-light)">28</div></div><div class="yr-n">28</div></div>
+        <div class="yr-row"><div class="yr-lbl">2023</div><div class="yr-track"><div class="yr-fill" style="width:68.6%;background:var(--green-light)">24</div></div><div class="yr-n">24</div></div>
+        <div class="yr-row"><div class="yr-lbl">2022</div><div class="yr-track"><div class="yr-fill" style="width:60%;background:var(--blue)">21</div></div><div class="yr-n">21</div></div>
+        <div class="yr-row"><div class="yr-lbl">2019</div><div class="yr-track"><div class="yr-fill" style="width:40%;background:var(--coral)">14</div></div><div class="yr-n">14</div></div>
+        <div class="yr-row"><div class="yr-lbl">2026</div><div class="yr-track"><div class="yr-fill" style="width:22.9%;background:var(--green-light)">8</div></div><div class="yr-n">8</div></div>
+        <div class="yr-row"><div class="yr-lbl">≤2018</div><div class="yr-track"><div class="yr-fill" style="width:5.7%;background:var(--text-muted)">2</div></div><div class="yr-n">2</div></div>
+      </div>
+      <div class="era-strip">
+        <div class="era-box e1">
+          <div class="era-n">15</div>
+          <div class="era-l">Lulusan 2015–2019</div>
+        </div>
+        <div class="era-box e2">
+          <div class="era-n">84</div>
+          <div class="era-l">Lulusan 2020–2022</div>
+        </div>
+        <div class="era-box e3">
+          <div class="era-n">94</div>
+          <div class="era-l">Lulusan 2023–2026</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="sec"><span>Temuan Kunci</span></div>
+  <div class="hl-grid">
+    <div class="hl">
+      <div class="hl-icon">🏆</div>
+      <div class="hl-ttl">Tertinggi: SIAKAD &amp; Bimbingan TA</div>
+      <div class="hl-txt">A.6 (akses SIAKAD) meraih skor 3,73 dan A.4 (bimbingan tugas akhir) 3,70 — keduanya mendapat penilaian Sangat Baik dari lebih dari 73% responden.</div>
+    </div>
+    <div class="hl y">
+      <div class="hl-icon">⚠️</div>
+      <div class="hl-ttl">Prioritas Perbaikan: Fasilitas Fisik &amp; WiFi</div>
+      <div class="hl-txt">B.3 (fasilitas umum) dan B.4 (internet/WiFi) adalah indikator terendah (3,27 dan 3,26) — masing-masing memiliki 5 dan 8 penilaian Kurang dari alumni.</div>
+    </div>
+    <div class="hl co">
+      <div class="hl-icon">🎓</div>
+      <div class="hl-ttl">Kepuasan Keseluruhan Sangat Tinggi</div>
+      <div class="hl-txt">64,8% alumni menyatakan Sangat Puas dan 33,7% Puas. Tidak satu pun alumni yang menyatakan Tidak Puas terhadap keseluruhan pengalaman studi.</div>
+    </div>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <div class="kesimpulan">
+    <div class="k-hdr">✦ Kesimpulan</div>
+    <div class="k-txt">
+      Survei kepuasan terhadap <strong>193 alumni lulusan 2015–2026</strong> Departemen KSHE IPB University,
+      yang mencakup <strong>11 indikator dalam 2 aspek layanan</strong>, menghasilkan
+      <strong>indeks kepuasan komposit sebesar 3,53 dari skala 4,00</strong>, berada dalam kategori
+      <strong>Sangat Baik (≥ 3,25)</strong>. Aspek Layanan Akademik mencatat skor lebih tinggi (3,61) dibandingkan
+      Layanan Non-Akademik (3,39). Indikator terkuat adalah akses SIAKAD (3,73) dan kualitas bimbingan tugas akhir (3,70),
+      sementara fasilitas umum (3,27) dan kualitas WiFi (3,26) menjadi prioritas perbaikan.
+      Secara keseluruhan, <strong>98,4% alumni menyatakan Puas atau Sangat Puas</strong> terhadap
+      pengalaman studi mereka di Departemen KSHE — sebuah capaian yang sangat positif.
+    </div>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <strong>Departemen Konservasi Sumberdaya Hutan dan Ekowisata (KSHE)</strong><br>
+    Fakultas Kehutanan dan Lingkungan · IPB University · Bogor, Indonesia
+  </div>
+  <div class="fr">Survei Kepuasan Alumni · Lulusan 2015–2026 · n = 193 responden · 2 aspek · 11 indikator</div>
+</footer>
+
+</body>
+</html>
