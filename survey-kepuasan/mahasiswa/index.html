@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografis Kepuasan Mahasiswa S1 — KSHE IPB University</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --hijau-gelap: #085041;
+    --hijau-mid: #0F6E56;
+    --hijau-terang: #1D9E75;
+    --bg: #F2EFE8;
+    --biru: #378ADD;
+    --kuning: #EF9F27;
+    --coral: #D85A30;
+    --ungu: #7F77DD;
+    --pink: #D4537E;
+    --putih: #ffffff;
+    --teks: #1a2e27;
+    --teks-ringan: #4a6459;
+  }
+
+  body {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--teks);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--hijau-gelap);
+    color: var(--putih);
+    padding: 36px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .header-left { flex: 1; }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--hijau-terang);
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .header-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  .header-score-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    min-width: 180px;
+  }
+  .score-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+  .score-value {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--kuning);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .score-kategori {
+    margin-top: 6px;
+    display: inline-block;
+    background: var(--kuning);
+    color: var(--hijau-gelap);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .header-meta {
+    margin-top: 10px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* SVG daun dekorasi */
+  .header-deco {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-label-text {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hijau-mid);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .section-label-line {
+    height: 2px;
+    flex: 1;
+    background: linear-gradient(to right, var(--hijau-mid), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── RINGKASAN ROW ── */
+  .ringkasan-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .stat-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 20px;
+    border-top: 4px solid var(--hijau-terang);
+  }
+  .stat-card.coral { border-top-color: var(--coral); }
+  .stat-card.biru  { border-top-color: var(--biru); }
+  .stat-card.ungu  { border-top-color: var(--ungu); }
+  .stat-card.kuning { border-top-color: var(--kuning); }
+  .stat-num {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+    line-height: 1;
+  }
+  .stat-desc {
+    font-size: 12px;
+    color: var(--teks-ringan);
+    margin-top: 6px;
+  }
+  .stat-badge {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .badge-sb { background: #e6f7f1; color: var(--hijau-mid); }
+  .badge-b  { background: #e8f2fd; color: #1a5fb4; }
+  .badge-c  { background: #fff8e6; color: #b36800; }
+  .badge-k  { background: #fde8e0; color: #a03000; }
+
+  /* ── KEPUASAN OVERALL ── */
+  .kepuasan-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 40px;
+    border-top: 4px solid var(--hijau-terang);
+  }
+  .kepuasan-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teks);
+    margin-bottom: 16px;
+  }
+  .kepuasan-bars { display: flex; flex-direction: column; gap: 10px; }
+  .kb-row { display: flex; align-items: center; gap: 12px; }
+  .kb-label { width: 110px; font-size: 12px; color: var(--teks-ringan); text-align: right; flex-shrink: 0; }
+  .kb-bar-wrap { flex: 1; background: #f0ede6; border-radius: 4px; overflow: hidden; height: 22px; }
+  .kb-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; transition: width 0.6s ease; }
+  .kb-bar span { font-size: 11px; font-weight: 700; color: var(--putih); white-space: nowrap; }
+  .kb-count { width: 40px; font-size: 12px; color: var(--teks-ringan); text-align: right; flex-shrink: 0; }
+
+  /* ── ASPEK GRID ── */
+  .aspek-section { margin-bottom: 40px; }
+  .aspek-header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .aspek-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+  }
+  .aspek-skor-badge {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--hijau-mid);
+  }
+  .aspek-skor-kat {
+    font-size: 11px;
+    color: var(--teks-ringan);
+    margin-left: 6px;
+  }
+
+  /* ── INDICATOR TABLE ── */
+  .indikator-list { display: flex; flex-direction: column; gap: 10px; }
+  .ind-card {
+    background: var(--putih);
+    border-radius: 8px;
+    padding: 14px 18px;
+    border-left: 4px solid var(--hijau-terang);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .ind-card.aspek-b { border-left-color: var(--biru); }
+  .ind-card.aspek-c { border-left-color: var(--ungu); }
+  .ind-card.low { border-left-color: var(--coral); }
+  .ind-code-label {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .ind-code {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--hijau-mid);
+    background: #e6f7f1;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+  .ind-card.aspek-b .ind-code { color: #1a5fb4; background: #e8f2fd; }
+  .ind-card.aspek-c .ind-code { color: var(--ungu); background: #f0effe; }
+  .ind-name {
+    font-size: 12.5px;
+    color: var(--teks);
+    line-height: 1.4;
+  }
+
+  /* distribusi bar mini */
+  .dist-row {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .dist-seg { height: 100%; }
+  .dist-legend {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    flex-wrap: wrap;
+  }
+  .dl-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--teks-ringan);
+  }
+  .dl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .c-sb { background: var(--hijau-terang); }
+  .c-b  { background: var(--biru); }
+  .c-c  { background: var(--kuning); }
+  .c-k  { background: var(--coral); }
+
+  /* right side score */
+  .ind-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .ind-skor {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+    line-height: 1;
+  }
+  .ind-kat {
+    font-size: 10px;
+    color: var(--teks-ringan);
+    margin-top: 3px;
+  }
+
+  /* ── ANGKATAN ROW ── */
+  .angkatan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .angkatan-card {
+    background: var(--putih);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    border-top: 3px solid var(--hijau-terang);
+  }
+  .angkatan-label { font-size: 12px; color: var(--teks-ringan); }
+  .angkatan-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--hijau-gelap);
+  }
+  .angkatan-pct { font-size: 11px; color: var(--hijau-mid); }
+
+  /* ── CATATAN MBKM ── */
+  .mbkm-note {
+    background: #f0effe;
+    border-left: 4px solid var(--ungu);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--teks);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .mbkm-note strong { color: var(--ungu); }
+
+  /* ── METODOLOGI ── */
+  .metodologi-card {
+    background: var(--putih);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    border-top: 4px solid var(--teks-ringan);
+    font-size: 12px;
+    color: var(--teks-ringan);
+    line-height: 1.7;
+  }
+  .metodologi-card strong { color: var(--teks); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--hijau-gelap);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ── UTILITIES ── */
+  .mb-24 { margin-bottom: 24px; }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 700px) {
+    .header-inner { flex-direction: column; }
+    .ringkasan-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .header { padding: 24px 20px; }
+    .container { padding: 24px 14px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════ HEADER ══════════════════════════ -->
+<header class="header">
+  <!-- SVG Daun Dekorasi -->
+  <svg class="header-deco" width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 20 C100 20 30 80 30 160 C30 220 80 270 150 280 C220 270 270 220 270 160 C270 80 200 20 150 20Z" fill="white"/>
+    <path d="M150 20 L150 280" stroke="white" stroke-width="3"/>
+    <path d="M150 80 C120 100 90 130 80 170" stroke="white" stroke-width="2"/>
+    <path d="M150 120 C170 140 190 165 200 200" stroke="white" stroke-width="2"/>
+    <path d="M150 160 C130 170 110 185 100 210" stroke="white" stroke-width="2"/>
+    <path d="M150 200 C165 208 180 220 190 240" stroke="white" stroke-width="2"/>
+  </svg>
+
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-eyebrow">Departemen KSHE · Fakultas Kehutanan dan Lingkungan · IPB University</div>
+      <h1 class="header-title">Survei Kepuasan Mahasiswa S1<br>terhadap Layanan Program Studi</h1>
+      <div class="header-subtitle">Tahun Akademik 2024/2025 · 3 Aspek Layanan · 17 Indikator</div>
+    </div>
+    <div>
+      <div class="header-score-box">
+        <div class="score-label">Indeks Komposit</div>
+        <div class="score-value">3,31</div>
+        <div><span class="score-kategori">Sangat Baik</span></div>
+        <div class="header-meta">dari skala 4,00</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════ CONTAINER ══════════════════════════ -->
+<main class="container">
+
+  <!-- ── Ringkasan Responden ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Ringkasan Responden</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="ringkasan-grid mb-24">
+    <div class="stat-card">
+      <div class="stat-num">345</div>
+      <div class="stat-desc">Total Responden Mahasiswa S1</div>
+    </div>
+    <div class="stat-card biru">
+      <div class="stat-num">17</div>
+      <div class="stat-desc">Indikator layanan dinilai dalam 3 aspek</div>
+    </div>
+    <div class="stat-card coral">
+      <div class="stat-num">87,5%</div>
+      <div class="stat-desc">Mahasiswa menyatakan <strong>Puas</strong> atau <strong>Sangat Puas</strong> secara keseluruhan</div>
+    </div>
+    <div class="stat-card kuning">
+      <div class="stat-num">3,31</div>
+      <div class="stat-desc">Indeks komposit kepuasan<br><span style="color:var(--hijau-mid);font-weight:700;">Sangat Baik</span></div>
+    </div>
+  </div>
+
+  <!-- ── Sebaran Angkatan ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Sebaran Angkatan</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="angkatan-grid mb-24">
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 56 (2019)</div>
+      <div class="angkatan-num">12</div>
+      <div class="angkatan-pct">3,5%</div>
+    </div>
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 57 (2020)</div>
+      <div class="angkatan-num">11</div>
+      <div class="angkatan-pct">3,2%</div>
+    </div>
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 58 (2021)</div>
+      <div class="angkatan-num">14</div>
+      <div class="angkatan-pct">4,1%</div>
+    </div>
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 59 (2022)</div>
+      <div class="angkatan-num">104</div>
+      <div class="angkatan-pct">30,1%</div>
+    </div>
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 60 (2023)</div>
+      <div class="angkatan-num">81</div>
+      <div class="angkatan-pct">23,5%</div>
+    </div>
+    <div class="angkatan-card">
+      <div class="angkatan-label">Angkatan 61 (2024)</div>
+      <div class="angkatan-num">104</div>
+      <div class="angkatan-pct">30,1%</div>
+    </div>
+    <div class="angkatan-card" style="border-top-color:var(--teks-ringan)">
+      <div class="angkatan-label">Lainnya / 62+</div>
+      <div class="angkatan-num">19</div>
+      <div class="angkatan-pct">5,5%</div>
+    </div>
+  </div>
+
+  <!-- ── Kepuasan Keseluruhan ── -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Kepuasan Keseluruhan</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="kepuasan-card mb-24">
+    <div class="kepuasan-title">Tingkat kepuasan umum terhadap layanan program studi (n = 345)</div>
+    <div class="kepuasan-bars">
+      <!-- Sangat Puas: 139 = 40,3% -->
+      <div class="kb-row">
+        <div class="kb-label">Sangat Puas</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:40.3%;background:var(--hijau-terang)">
+            <span>40,3%</span>
+          </div>
+        </div>
+        <div class="kb-count">139</div>
+      </div>
+      <!-- Puas: 163 = 47,2% -->
+      <div class="kb-row">
+        <div class="kb-label">Puas</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:47.2%;background:var(--biru)">
+            <span>47,2%</span>
+          </div>
+        </div>
+        <div class="kb-count">163</div>
+      </div>
+      <!-- Cukup Puas: 40 = 11,6% -->
+      <div class="kb-row">
+        <div class="kb-label">Cukup Puas</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:11.6%;background:var(--kuning)">
+            <span>11,6%</span>
+          </div>
+        </div>
+        <div class="kb-count">40</div>
+      </div>
+      <!-- Kurang Puas: 3 = 0,9% -->
+      <div class="kb-row">
+        <div class="kb-label">Kurang Puas</div>
+        <div class="kb-bar-wrap">
+          <div class="kb-bar" style="width:2%;background:var(--coral)">
+            <span>0,9%</span>
+          </div>
+        </div>
+        <div class="kb-count">3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ASPEK A ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Aspek Layanan</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="aspek-section">
+    <div class="aspek-header-row">
+      <div class="aspek-title">A. Aspek Layanan Akademik</div>
+      <div>
+        <span class="aspek-skor-badge">3,40</span>
+        <span class="aspek-skor-kat">Sangat Baik · 7 indikator</span>
+      </div>
+    </div>
+    <div class="indikator-list">
+
+      <!-- A.1 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">A.1</span>
+            <span class="ind-name">Ketersediaan dan aksesibilitas RPS/Rencana Pembelajaran (untuk semua mata kuliah)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:54.2%"></div>
+            <div class="dist-seg c-b"  style="width:38.3%"></div>
+            <div class="dist-seg c-c"  style="width:6.7%"></div>
+            <div class="dist-seg c-k"  style="width:0.8%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 187 (54,2%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 132 (38,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 23 (6,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 3 (0,8%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,46</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- A.2 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">A.2</span>
+            <span class="ind-name">Kualitas pembelajaran di kelas (metode pengajaran, interaksi dosen)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:46.1%"></div>
+            <div class="dist-seg c-b"  style="width:45.2%"></div>
+            <div class="dist-seg c-c"  style="width:8.1%"></div>
+            <div class="dist-seg c-k"  style="width:0.6%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 159 (46,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 156 (45,2%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 28 (8,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 2 (0,6%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,37</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- A.3 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">A.3</span>
+            <span class="ind-name">Ketersediaan bahan ajar dan referensi di perpustakaan (buku, jurnal, e-resources)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:54.5%"></div>
+            <div class="dist-seg c-b"  style="width:34.8%"></div>
+            <div class="dist-seg c-c"  style="width:9.9%"></div>
+            <div class="dist-seg c-k"  style="width:0.8%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 188 (54,5%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 120 (34,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 34 (9,9%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 3 (0,8%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,43</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- A.4 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">A.4</span>
+            <span class="ind-name">Kemudahan akses laboratorium dan fasilitas praktikum/penelitian</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:44.6%"></div>
+            <div class="dist-seg c-b"  style="width:40.3%"></div>
+            <div class="dist-seg c-c"  style="width:12.8%"></div>
+            <div class="dist-seg c-k"  style="width:2.3%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 154 (44,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 139 (40,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 44 (12,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 8 (2,3%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,27</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- A.5 — skor terendah di A -->
+      <div class="ind-card low">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code" style="color:var(--coral);background:#fde8e0;">A.5</span>
+            <span class="ind-name">Keadilan dan transparansi penilaian hasil belajar (UTS, UAS, tugas)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:37.1%"></div>
+            <div class="dist-seg c-b"  style="width:39.7%"></div>
+            <div class="dist-seg c-c"  style="width:19.4%"></div>
+            <div class="dist-seg c-k"  style="width:3.8%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 128 (37,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 137 (39,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 67 (19,4%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 13 (3,8%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--coral)">3,10</div>
+          <div class="ind-kat" style="color:var(--coral)">Baik · Terendah Aspek A</div>
+        </div>
+      </div>
+
+      <!-- A.6 -->
+      <div class="ind-card">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">A.6</span>
+            <span class="ind-name">Kualitas bimbingan akademik/tugas akhir (tesis/disertasi)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:60.6%"></div>
+            <div class="dist-seg c-b"  style="width:35.1%"></div>
+            <div class="dist-seg c-c"  style="width:4.0%"></div>
+            <div class="dist-seg c-k"  style="width:0.3%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 209 (60,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 121 (35,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 14 (4,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 1 (0,3%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor">3,56</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- A.7 — tertinggi -->
+      <div class="ind-card" style="border-left-color:var(--kuning)">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code" style="color:#b36800;background:#fff8e6;">A.7</span>
+            <span class="ind-name">Pelayanan administrasi akademik (pengisian KRS, pengumuman nilai, dll.)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:67.8%"></div>
+            <div class="dist-seg c-b"  style="width:28.1%"></div>
+            <div class="dist-seg c-c"  style="width:3.2%"></div>
+            <div class="dist-seg c-k"  style="width:0.9%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 234 (67,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 97 (28,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 11 (3,2%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 3 (0,9%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--kuning)">3,63</div>
+          <div class="ind-kat" style="color:#b36800;">Tertinggi Keseluruhan</div>
+        </div>
+      </div>
+
+    </div><!-- /indikator-list -->
+  </div><!-- /aspek A -->
+
+  <!-- ══════════ ASPEK B ══════════ -->
+  <div class="aspek-section">
+    <div class="aspek-header-row">
+      <div class="aspek-title">B. Aspek Layanan Non-Akademik</div>
+      <div>
+        <span class="aspek-skor-badge" style="color:var(--biru)">3,13</span>
+        <span class="aspek-skor-kat">Baik · 6 indikator</span>
+      </div>
+    </div>
+    <div class="indikator-list">
+
+      <!-- B.1 -->
+      <div class="ind-card aspek-b">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">B.1</span>
+            <span class="ind-name">Layanan kemahasiswaan (informasi beasiswa, konseling, pengembangan karir)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:49.9%"></div>
+            <div class="dist-seg c-b"  style="width:38.0%"></div>
+            <div class="dist-seg c-c"  style="width:11.0%"></div>
+            <div class="dist-seg c-k"  style="width:1.2%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 172 (49,9%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 131 (38,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 38 (11,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 4 (1,2%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--biru)">3,37</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- B.2 -->
+      <div class="ind-card aspek-b">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">B.2</span>
+            <span class="ind-name">Fasilitas dan kegiatan pengembangan minat bakat (UKM, olahraga, seni)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:47.8%"></div>
+            <div class="dist-seg c-b"  style="width:36.5%"></div>
+            <div class="dist-seg c-c"  style="width:11.6%"></div>
+            <div class="dist-seg c-k"  style="width:4.1%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 165 (47,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 126 (36,5%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 40 (11,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 14 (4,1%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--biru)">3,28</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- B.3 -->
+      <div class="ind-card aspek-b">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">B.3</span>
+            <span class="ind-name">Layanan kesehatan / poliklinik</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:57.4%"></div>
+            <div class="dist-seg c-b"  style="width:37.4%"></div>
+            <div class="dist-seg c-c"  style="width:4.6%"></div>
+            <div class="dist-seg c-k"  style="width:0.6%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 198 (57,4%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 129 (37,4%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 16 (4,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 2 (0,6%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--biru)">3,52</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- B.4 — skor terendah keseluruhan -->
+      <div class="ind-card low">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code" style="color:var(--coral);background:#fde8e0;">B.4</span>
+            <span class="ind-name">Fasilitas umum (ruang kuliah, toilet, kantin, tempat ibadah)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:23.8%"></div>
+            <div class="dist-seg c-b"  style="width:29.3%"></div>
+            <div class="dist-seg c-c"  style="width:29.6%"></div>
+            <div class="dist-seg c-k"  style="width:17.4%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 82 (23,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 101 (29,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 102 (29,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 60 (17,4%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--coral)">2,59</div>
+          <div class="ind-kat" style="color:var(--coral)">Baik · Terendah Keseluruhan</div>
+        </div>
+      </div>
+
+      <!-- B.5 -->
+      <div class="ind-card low">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code" style="color:var(--coral);background:#fde8e0;">B.5</span>
+            <span class="ind-name">Akses dan kualitas layanan internet/WiFi di lingkungan kampus</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:30.1%"></div>
+            <div class="dist-seg c-b"  style="width:28.7%"></div>
+            <div class="dist-seg c-c"  style="width:26.4%"></div>
+            <div class="dist-seg c-k"  style="width:14.8%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 104 (30,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 99 (28,7%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 91 (26,4%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 51 (14,8%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--coral)">2,74</div>
+          <div class="ind-kat" style="color:var(--coral)">Baik · Perlu Perhatian</div>
+        </div>
+      </div>
+
+      <!-- B.6 -->
+      <div class="ind-card aspek-b">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">B.6</span>
+            <span class="ind-name">Pelayanan informasi dan pengaduan (responsif, solutif)</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:47.0%"></div>
+            <div class="dist-seg c-b"  style="width:35.1%"></div>
+            <div class="dist-seg c-c"  style="width:15.4%"></div>
+            <div class="dist-seg c-k"  style="width:2.6%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 162 (47,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 121 (35,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 53 (15,4%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 9 (2,6%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--biru)">3,26</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+    </div><!-- /indikator-list B -->
+  </div><!-- /aspek B -->
+
+  <!-- ══════════ ASPEK C ══════════ -->
+  <div class="aspek-section">
+    <div class="aspek-header-row">
+      <div class="aspek-title">C. Dukungan Program MBKM / Kegiatan Luar Kampus</div>
+      <div>
+        <span class="aspek-skor-badge" style="color:var(--ungu)">3,40</span>
+        <span class="aspek-skor-kat">Sangat Baik · 4 indikator</span>
+      </div>
+    </div>
+
+    <div class="mbkm-note">
+      <strong>Catatan:</strong> Kuesioner menyatakan Aspek C <em>"khusus yang pernah mengikuti"</em> program MBKM/magang/penelitian luar kampus. Namun seluruh 345 responden mengisi bagian ini (tidak ada skip). Skor yang disajikan dihitung dari keseluruhan jawaban yang masuk. Jika di masa mendatang ingin membatasi analisis hanya pada mahasiswa yang benar-benar pernah mengikuti MBKM, disarankan menambahkan pertanyaan filter eksplisit pada kuesioner.
+    </div>
+
+    <div class="indikator-list">
+
+      <!-- C.1 -->
+      <div class="ind-card aspek-c">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">C.1</span>
+            <span class="ind-name">Informasi dan sosialisasi program MBKM / magang / penelitian di luar kampus</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:51.0%"></div>
+            <div class="dist-seg c-b"  style="width:38.8%"></div>
+            <div class="dist-seg c-c"  style="width:8.1%"></div>
+            <div class="dist-seg c-k"  style="width:2.0%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 176 (51,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 134 (38,8%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 28 (8,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 7 (2,0%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--ungu)">3,39</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- C.2 -->
+      <div class="ind-card aspek-c">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">C.2</span>
+            <span class="ind-name">Proses pendaftaran dan seleksi program MBKM</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:49.9%"></div>
+            <div class="dist-seg c-b"  style="width:40.3%"></div>
+            <div class="dist-seg c-c"  style="width:9.0%"></div>
+            <div class="dist-seg c-k"  style="width:0.9%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 172 (49,9%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 139 (40,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 31 (9,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 3 (0,9%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--ungu)">3,39</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- C.3 -->
+      <div class="ind-card aspek-c">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">C.3</span>
+            <span class="ind-name">Bimbingan selama pelaksanaan kegiatan MBKM</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:51.3%"></div>
+            <div class="dist-seg c-b"  style="width:39.1%"></div>
+            <div class="dist-seg c-c"  style="width:9.0%"></div>
+            <div class="dist-seg c-k"  style="width:0.6%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 177 (51,3%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 135 (39,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 31 (9,0%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 2 (0,6%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--ungu)">3,41</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+      <!-- C.4 -->
+      <div class="ind-card aspek-c">
+        <div>
+          <div class="ind-code-label">
+            <span class="ind-code">C.4</span>
+            <span class="ind-name">Proses konversi dan pengakuan SKS kegiatan MBKM</span>
+          </div>
+          <div class="dist-row">
+            <div class="dist-seg c-sb" style="width:53.6%"></div>
+            <div class="dist-seg c-b"  style="width:37.1%"></div>
+            <div class="dist-seg c-c"  style="width:7.5%"></div>
+            <div class="dist-seg c-k"  style="width:1.7%"></div>
+          </div>
+          <div class="dist-legend">
+            <div class="dl-item"><div class="dl-dot c-sb"></div>SB 185 (53,6%)</div>
+            <div class="dl-item"><div class="dl-dot c-b"></div>B 128 (37,1%)</div>
+            <div class="dl-item"><div class="dl-dot c-c"></div>C 26 (7,5%)</div>
+            <div class="dl-item"><div class="dl-dot c-k"></div>K 6 (1,7%)</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-skor" style="color:var(--ungu)">3,43</div>
+          <div class="ind-kat">Sangat Baik</div>
+        </div>
+      </div>
+
+    </div><!-- /indikator-list C -->
+  </div><!-- /aspek C -->
+
+  <!-- ══════════ REKAPITULASI ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Rekapitulasi Skor Aspek</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="two-col mb-24">
+    <!-- Tabel rekapitulasi -->
+    <div style="background:var(--putih);border-radius:10px;padding:20px;border-top:4px solid var(--hijau-gelap);">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--hijau-gelap)">Skor per Aspek</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--bg);">
+            <th style="text-align:left;padding:6px 0;color:var(--teks-ringan);font-weight:600">Aspek</th>
+            <th style="text-align:center;padding:6px 0;color:var(--teks-ringan);font-weight:600">Ind.</th>
+            <th style="text-align:right;padding:6px 0;color:var(--teks-ringan);font-weight:600">Skor</th>
+            <th style="text-align:right;padding:6px 0;color:var(--teks-ringan);font-weight:600">Kategori</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--bg);">
+            <td style="padding:8px 0;">A. Layanan Akademik</td>
+            <td style="text-align:center;padding:8px 0;color:var(--teks-ringan)">7</td>
+            <td style="text-align:right;padding:8px 0;font-weight:700;color:var(--hijau-mid)">3,40</td>
+            <td style="text-align:right;padding:8px 0;"><span class="stat-badge badge-sb">Sangat Baik</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bg);">
+            <td style="padding:8px 0;">B. Layanan Non-Akademik</td>
+            <td style="text-align:center;padding:8px 0;color:var(--teks-ringan)">6</td>
+            <td style="text-align:right;padding:8px 0;font-weight:700;color:var(--biru)">3,13</td>
+            <td style="text-align:right;padding:8px 0;"><span class="stat-badge badge-b">Baik</span></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--bg);">
+            <td style="padding:8px 0;">C. Dukungan MBKM</td>
+            <td style="text-align:center;padding:8px 0;color:var(--teks-ringan)">4</td>
+            <td style="text-align:right;padding:8px 0;font-weight:700;color:var(--ungu)">3,40</td>
+            <td style="text-align:right;padding:8px 0;"><span class="stat-badge badge-sb">Sangat Baik</span></td>
+          </tr>
+          <tr style="border-bottom:2px solid var(--hijau-gelap);">
+            <td style="padding:10px 0;font-weight:700;color:var(--hijau-gelap)">Indeks Komposit</td>
+            <td style="text-align:center;padding:10px 0;color:var(--teks-ringan);font-weight:700">17</td>
+            <td style="text-align:right;padding:10px 0;font-weight:700;font-size:16px;color:var(--hijau-gelap)">3,31</td>
+            <td style="text-align:right;padding:10px 0;"><span class="stat-badge badge-sb" style="font-size:11px">Sangat Baik</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Highlight temuan -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--kuning)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#b36800;margin-bottom:6px">⭐ Indikator Tertinggi</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">A.7 — Pelayanan Administrasi Akademik</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">Skor 3,63 · 67,8% mahasiswa nilai Sangat Baik</div>
+      </div>
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--coral)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);margin-bottom:6px">⚠ Indikator Perlu Perhatian</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">B.4 — Fasilitas Umum Kampus</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">Skor 2,59 · 47% mahasiswa nilai Cukup atau Kurang</div>
+      </div>
+      <div style="background:var(--putih);border-radius:10px;padding:16px 18px;border-left:4px solid var(--coral)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--coral);margin-bottom:6px">⚠ Indikator Perlu Perhatian</div>
+        <div style="font-size:13px;font-weight:700;color:var(--teks)">B.5 — Layanan Internet / WiFi Kampus</div>
+        <div style="font-size:12px;color:var(--teks-ringan);margin-top:2px">Skor 2,74 · 41,2% mahasiswa nilai Cukup atau Kurang</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ METODOLOGI ══════════ -->
+  <div class="section-label mb-24">
+    <span class="section-label-text">Catatan Metodologi</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <div class="metodologi-card">
+    <strong>Responden:</strong> n = 345 mahasiswa S1 Departemen KSHE, IPB University.<br>
+    <strong>Skala:</strong> Sangat Baik = 4, Baik = 3, Cukup = 2, Kurang = 1.<br>
+    <strong>Kategori indeks:</strong> Kurang (1,00–1,74) · Cukup (1,75–2,49) · Baik (2,50–3,24) · Sangat Baik (3,25–4,00).<br>
+    <strong>Skor aspek:</strong> rata-rata aritmatika dari seluruh jawaban valid semua indikator dalam aspek tersebut.<br>
+    <strong>Indeks komposit:</strong> rata-rata aritmatika dari seluruh jawaban valid 17 indikator (Aspek A, B, dan C).<br>
+    <strong>Catatan Aspek C:</strong> Meski ditujukan khusus bagi yang pernah mengikuti MBKM, seluruh 345 responden mengisi bagian ini tanpa ada data kosong. Skor disajikan dari keseluruhan jawaban yang masuk. Disarankan menambahkan pertanyaan filter eksplisit pada survei berikutnya.<br>
+    <strong>Kepuasan keseluruhan (Pertanyaan 3.1):</strong> diukur dengan skala persepsi tersendiri (Sangat Puas / Puas / Cukup Puas / Kurang Puas) dan tidak diikutsertakan dalam perhitungan indeks komposit.<br>
+    <strong>Saran terbuka (Pertanyaan 3.2):</strong> berupa teks bebas, tidak dikuantifikasi dalam infografis ini.
+  </div>
+
+</main>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer>
+  <strong>Departemen Konservasi Sumberdaya Hutan dan Ekowisata (KSHE)</strong><br>
+  Fakultas Kehutanan dan Lingkungan · IPB University · Bogor<br>
+  <span style="margin-top:4px;display:inline-block">Survei Kepuasan Mahasiswa S1 · Tahun Akademik 2024/2025</span>
+</footer>
+
+</body>
+</html>
