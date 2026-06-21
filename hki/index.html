@@ -504,5 +504,21 @@
 <footer>
   Dibuat otomatis dari sertifikat DJKI (Surat Pencatatan Ciptaan) menggunakan script Python.
 </footer>
+<script>
+  document.querySelectorAll('.doc-card .links').forEach((linksContainer) => {
+    const seen = new Set();
+
+    Array.from(linksContainer.querySelectorAll('.file-link')).forEach((link) => {
+      const key = `${link.getAttribute('href') || ''}::${link.textContent.trim()}`;
+
+      if (seen.has(key)) {
+        link.remove();
+        return;
+      }
+
+      seen.add(key);
+    });
+  });
+</script>
 </body>
 </html>
