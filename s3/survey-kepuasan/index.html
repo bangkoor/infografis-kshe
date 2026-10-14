@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kepuasan Stakeholder S3 – KSHE IPB University</title>
+<style>
+  :root {
+    --bg: #F2EFE8;
+    --green-dark: #085041;
+    --green-mid: #0F6E56;
+    --green-light: #1D9E75;
+    --blue: #378ADD;
+    --yellow: #EF9F27;
+    --coral: #D85A30;
+    --purple: #7F77DD;
+    --pink: #D4537E;
+    --teal: #2BA8A0;
+    --white: #ffffff;
+    --text: #1a2520;
+    --text-muted: #5a6b65;
+    --font: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    --radius: 6px;
+    --shadow: 0 1px 4px rgba(8,80,65,0.09);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 28px 32px 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-leaf {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .header-title { flex: 1; }
+
+  .header-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 6px;
+  }
+
+  .header-h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .header-badge {
+    background: var(--yellow);
+    color: var(--green-dark);
+    border-radius: 8px;
+    padding: 10px 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .badge-score {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .badge-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    display: block;
+  }
+
+  .badge-cat {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--green-mid), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── SUMMARY ROW ── */
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .sum-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--green-mid);
+    text-align: center;
+  }
+
+  .sum-card.accent-yellow { border-top-color: var(--yellow); }
+  .sum-card.accent-blue   { border-top-color: var(--blue); }
+  .sum-card.accent-green  { border-top-color: var(--green-light); }
+
+  .sum-number {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+    display: block;
+  }
+
+  .sum-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── COMPOSITE BAR ── */
+  .composite-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+
+  .comp-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .comp-bar-bg {
+    background: #e8e4db;
+    border-radius: 6px;
+    height: 28px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .comp-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(to right, var(--green-dark), var(--green-light));
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    justify-content: flex-end;
+  }
+
+  .comp-bar-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .comp-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ── STAKEHOLDER CARDS ── */
+  .stk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .stk-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--green-mid);
+  }
+
+  .stk-card.c-blue   { border-left-color: var(--blue); }
+  .stk-card.c-coral  { border-left-color: var(--coral); }
+  .stk-card.c-green  { border-left-color: var(--green-light); }
+  .stk-card.c-purple { border-left-color: var(--purple); }
+  .stk-card.c-pink   { border-left-color: var(--pink); }
+  .stk-card.c-teal   { border-left-color: var(--teal); }
+  .stk-card.c-yellow { border-left-color: var(--yellow); }
+
+  .stk-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .stk-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stk-number {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .resp-ts { white-space: nowrap; }
+  .resp-ts strong { color: var(--green-dark); font-weight: 700; }
+  .resp-sep { color: #ccc; }
+
+  .stk-score-wrap { text-align: right; flex-shrink: 0; }
+
+  .stk-score {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+
+  .stk-cat {
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-top: 3px;
+    display: inline-block;
+  }
+
+  .cat-sb { background: #d4edda; color: #155724; }
+  .cat-b  { background: #d1ecf1; color: #0c5460; }
+  .cat-c  { background: #fff3cd; color: #856404; }
+  .cat-k  { background: #f8d7da; color: #721c24; }
+
+  .dist-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .dist-seg.sb { background: var(--green-light); }
+  .dist-seg.b  { background: var(--blue); }
+  .dist-seg.c  { background: var(--yellow); }
+  .dist-seg.kb { background: var(--coral); }
+
+  .dist-legend {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .dist-item {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dist-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .dist-dot.sb { background: var(--green-light); }
+  .dist-dot.b  { background: var(--blue); }
+  .dist-dot.c  { background: var(--yellow); }
+  .dist-dot.kb { background: var(--coral); }
+
+  .stk-tindak {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8e4db;
+    line-height: 1.45;
+  }
+
+  .stk-tindak strong { color: var(--green-mid); font-weight: 700; }
+
+  /* ── SCORE TABLE ── */
+  .score-table-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    overflow-x: auto;
+  }
+
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .score-table th {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .score-table th:nth-child(n+3) { text-align: center; }
+
+  .score-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #f0ece3;
+    vertical-align: middle;
+  }
+
+  .score-table td:nth-child(n+3) { text-align: center; }
+  .score-table tr:last-child td { border-bottom: none; }
+  .score-table tr:hover td { background: #f7f4ee; }
+
+  .td-score {
+    font-weight: 700;
+    color: var(--green-dark);
+    font-size: 13px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 18px 32px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .footer strong { color: var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .header { flex-direction: column; }
+    .summary-row { grid-template-columns: 1fr 1fr; }
+    .stk-grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-title">
+    <div class="header-eyebrow">Kepuasan Stakeholder · Tabel 2.7C LKPS · TA 2025/2026</div>
+    <h1 class="header-h1">Kepuasan Stakeholder<br>Internal &amp; Eksternal</h1>
+    <div class="header-sub">Program Studi S3 Konservasi Biodiversitas Tropika</div>
+    <div class="header-sub">Departemen Konservasi Sumberdaya Hutan dan Ekowisata · IPB University</div>
+  </div>
+  <div class="header-badge">
+    <span class="badge-score">3,66</span>
+    <span class="badge-label">Rata-rata Skor</span>
+    <span class="badge-cat">Sangat Baik</span>
+  </div>
+  <svg class="header-leaf" width="280" height="280" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 C20 20, 5 50, 15 80 C25 110, 60 90, 70 65 C80 40, 70 15, 50 10Z" fill="white"/>
+    <path d="M50 10 C50 10, 50 80, 15 80" stroke="white" stroke-width="1.5" fill="none"/>
+    <path d="M50 30 C50 30, 35 55, 25 65" stroke="white" stroke-width="0.8" fill="none"/>
+    <path d="M50 45 C50 45, 60 60, 62 72" stroke="white" stroke-width="0.8" fill="none"/>
+    <path d="M50 20 C50 20, 65 40, 68 55" stroke="white" stroke-width="0.8" fill="none"/>
+  </svg>
+</header>
+
+<main class="main">
+
+  <div class="section-label">Ringkasan Survei</div>
+  <div class="summary-row">
+    <div class="sum-card accent-yellow">
+      <span class="sum-number">7</span>
+      <div class="sum-desc">Kelompok Stakeholder</div>
+    </div>
+    <div class="sum-card accent-blue">
+      <span class="sum-number">89</span>
+      <div class="sum-desc">Total Responden TA 2025/2026</div>
+    </div>
+    <div class="sum-card accent-green">
+      <span class="sum-number">3,66</span>
+      <div class="sum-desc">Rata-rata Skor Keseluruhan</div>
+    </div>
+  </div>
+
+  <div class="composite-wrap">
+    <div class="comp-label">Indeks Kepuasan Rata-rata — semua stakeholder</div>
+    <div class="comp-bar-bg">
+      <div class="comp-bar-fill" style="width:91.5%">
+        <span class="comp-bar-num">3,66</span>
+      </div>
+    </div>
+    <div class="comp-scale">
+      <span>Kurang (1,00)</span>
+      <span>Cukup (1,75)</span>
+      <span>Baik (2,50)</span>
+      <span>Sangat Baik (3,25)</span>
+      <span>4,00</span>
+    </div>
+  </div>
+
+  <div class="section-label">Kepuasan per Kelompok Stakeholder</div>
+  <div class="stk-grid">
+
+    <!-- 1. Mahasiswa -->
+    <div class="stk-card c-blue">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Mahasiswa</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>20</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>28</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>25</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 100%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,72</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:71.67%"></div>
+        <div class="dist-seg b"  style="width:28.33%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 71,67%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 28,33%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan dan meningkatkan kualitas layanan mahasiswa secara berkelanjutan melalui evaluasi berkala terhadap layanan akademik dan administrasi, peningkatan responsivitas serta kemudahan akses layanan, penguatan komunikasi antara program studi dan mahasiswa, serta optimalisasi dukungan pembelajaran dan fasilitas akademik berdasarkan hasil survei kepuasan mahasiswa.</div>
+    </div>
+
+    <!-- 2. Dosen -->
+    <div class="stk-card c-green">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Dosen</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>21</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>23</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>23</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 100%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,64</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:69.57%"></div>
+        <div class="dist-seg b"  style="width:25.52%"></div>
+        <div class="dist-seg c"  style="width:3.78%"></div>
+        <div class="dist-seg kb" style="width:1.13%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 69,57%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 25,52%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 3,78%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 1,13%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Evaluasi dan peningkatan kualitas layanan dosen secara berkala melalui penguatan komunikasi dan koordinasi, evaluasi beban kerja, peningkatan pengembangan kompetensi, serta optimalisasi fasilitas, dukungan akademik, dan administrasi berdasarkan hasil survei kepuasan.</div>
+    </div>
+
+    <!-- 3. Tenaga Kependidikan -->
+    <div class="stk-card c-coral">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Tenaga Kependidikan</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>22</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>22</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>22</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 100%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,24</div>
+          <div><span class="stk-cat cat-b">Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:36.36%"></div>
+        <div class="dist-seg b"  style="width:51.14%"></div>
+        <div class="dist-seg c"  style="width:12.5%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 36,36%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 51,14%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 12,50%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Peningkatan komunikasi dan koordinasi pimpinan dengan tenaga kependidikan, evaluasi beban kerja dan kebutuhan pengembangan karir, pemetaan kebutuhan pelatihan, peningkatan kesejahteraan dan lingkungan kerja, serta inventarisasi dan pemenuhan kebutuhan fasilitas kerja. Tindak lanjut dipantau dan dievaluasi secara berkala.</div>
+    </div>
+
+    <!-- 4. Mitra -->
+    <div class="stk-card c-yellow">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Mitra</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>20</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>41</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>30</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 75%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,84</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:84.17%"></div>
+        <div class="dist-seg b"  style="width:15.83%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 84,17%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 15,83%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Peningkatan komunikasi dan koordinasi dengan mitra, memperjelas perjanjian kerja sama terkait hak dan kewajiban, serta meningkatkan profesionalisme tim dalam pelaksanaan kegiatan. Evaluasi ketepatan waktu, peningkatan kualitas luaran kerja sama, dan penyediaan akses informasi yang lebih mudah bagi mitra.</div>
+    </div>
+
+    <!-- 5. Lulusan -->
+    <div class="stk-card c-purple">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Lulusan <span style="font-size:11px;font-weight:400">(Alumni)</span></div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>9</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>5</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>5</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 100%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,74</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:74.42%"></div>
+        <div class="dist-seg b"  style="width:25.58%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 74,42%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 25,58%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Pemeliharaan dan peningkatan kualitas layanan secara berkelanjutan melalui evaluasi layanan akademik, peningkatan metode pembelajaran yang lebih interaktif dan inovatif, penguatan koordinasi dan kerja sama dengan lulusan, serta optimalisasi layanan administrasi dan dukungan akademik.</div>
+    </div>
+
+    <!-- 6. Pengguna Lulusan -->
+    <div class="stk-card c-teal">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Pengguna Lulusan</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>9</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>5</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>5</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 56%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,96</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:96.36%"></div>
+        <div class="dist-seg b"  style="width:3.64%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 96,36%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 3,64%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan dan meningkatkan kualitas layanan serta relevansi kurikulum sesuai kebutuhan pengguna lulusan. Evaluasi kurikulum secara berkala, penguatan keterkaitan pembelajaran dengan kebutuhan dunia kerja, serta peningkatan keterlibatan narasumber/praktisi dari industri dan lembaga terkait.</div>
+    </div>
+
+  </div>
+
+  <!-- Masyarakat Penerima Manfaat (full width) -->
+  <div style="margin-bottom:28px">
+    <div class="stk-card c-pink">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Masyarakat Penerima Manfaat</div>
+          <div class="stk-number">
+            <span class="resp-ts">TA 2025/2026: <strong>8</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-1 2024/2025: <strong>9</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">TA-2 2023/2024: <strong>1</strong></span>
+            <span class="resp-sep">·</span>
+            <span class="resp-ts">Keterwakilan 50%</span>
+          </div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,47</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:46.74%"></div>
+        <div class="dist-seg b"  style="width:53.26%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 46,74%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 53,26%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan kualitas pelaksanaan kegiatan pengabdian kepada masyarakat serta meningkatkan kualitas layanan dan dampak kegiatan. Evaluasi berkala berdasarkan umpan balik masyarakat, penguatan kesesuaian program dengan kebutuhan, serta peningkatan pendampingan dan keberlanjutan program setelah kegiatan selesai.</div>
+    </div>
+  </div>
+
+  <!-- Tabel Ringkasan -->
+  <div class="section-label">Tabel Ringkasan Skor</div>
+  <div class="score-table-wrap">
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Stakeholder</th>
+          <th>SB%</th>
+          <th>B%</th>
+          <th>C%</th>
+          <th>KB%</th>
+          <th>Skor</th>
+          <th>Kategori</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mahasiswa</td>
+          <td>71,67</td>
+          <td>28,33</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,72</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Dosen</td>
+          <td>69,57</td>
+          <td>25,52</td>
+          <td>3,78</td>
+          <td>1,13</td>
+          <td class="td-score">3,64</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tenaga Kependidikan</td>
+          <td>36,36</td>
+          <td>51,14</td>
+          <td>12,50</td>
+          <td>0</td>
+          <td class="td-score">3,24</td>
+          <td><span class="stk-cat cat-b">Baik</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Mitra</td>
+          <td>84,17</td>
+          <td>15,83</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,84</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Lulusan</td>
+          <td>74,42</td>
+          <td>25,58</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,74</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Pengguna Lulusan</td>
+          <td>96,36</td>
+          <td>3,64</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,96</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Masyarakat Penerima Manfaat</td>
+          <td>46,74</td>
+          <td>53,26</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,47</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr style="background:#f0ece3">
+          <td colspan="5" style="font-weight:700;text-align:right">Rata-rata Keseluruhan</td>
+          <td></td>
+          <td class="td-score" style="font-size:15px">3,66</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Catatan Metodologi -->
+  <div class="section-label">Catatan Metodologi</div>
+  <div style="background:var(--white);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow);font-size:12px;color:var(--text-muted);line-height:1.6">
+    <p>• Skor dihitung menggunakan skala Likert 4 tingkat: <strong>Sangat Baik (SB) = 4, Baik (B) = 3, Cukup (C) = 2, Kurang (KB) = 1</strong>.</p>
+    <p>• Kategori skor: <strong>Sangat Baik</strong> (3,25–4,00), <strong>Baik</strong> (2,50–3,24), <strong>Cukup</strong> (1,75–2,49), <strong>Kurang</strong> (1,00–1,74).</p>
+    <p>• TS merujuk pada Tahun Akademik (TA) penuh. Survei dilaksanakan pada TA 2025/2026, TA-1 2024/2025, TA-2 2023/2024.</p>
+    <p>• Rata-rata keseluruhan dihitung dari rata-rata aritmetika seluruh skor: (3,72 + 3,64 + 3,24 + 3,84 + 3,74 + 3,96 + 3,47) ÷ 7 = <strong>3,66</strong>.</p>
+    <p>• Skor Tenaga Kependidikan (3,2386) berada di batas atas kategori Baik (≤ 3,24). Skor ditampilkan sesuai data LKPS.</p>
+    <p>• Data distribusi persentase (SB/B/C/KB) diambil langsung dari Tabel 2.7C LKPS sebagaimana dilaporkan oleh pengusul program studi.</p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div>
+    <strong>Program Studi S3 Konservasi Biodiversitas Tropika</strong><br>
+    Departemen Konservasi Sumberdaya Hutan dan Ekowisata ·<br>
+    Fakultas Kehutanan dan Lingkungan · IPB University
+  </div>
+  <div style="text-align:right">
+    Sumber: Tabel 2.7C LKPS · TA 2025/2026<br>
+    7 Kelompok Stakeholder · 109 Total Responden TA 2025/2026
+  </div>
+</footer>
+
+</body>
+</html>
