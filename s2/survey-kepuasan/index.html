@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kepuasan Stakeholder – KSHE IPB University</title>
+<style>
+  :root {
+    --bg: #F2EFE8;
+    --green-dark: #085041;
+    --green-mid: #0F6E56;
+    --green-light: #1D9E75;
+    --blue: #378ADD;
+    --yellow: #EF9F27;
+    --coral: #D85A30;
+    --purple: #7F77DD;
+    --pink: #D4537E;
+    --teal: #2BA8A0;
+    --white: #ffffff;
+    --text: #1a2520;
+    --text-muted: #5a6b65;
+    --font: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    --radius: 6px;
+    --shadow: 0 1px 4px rgba(8,80,65,0.09);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 28px 32px 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-leaf {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .header-title {
+    flex: 1;
+  }
+
+  .header-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 6px;
+  }
+
+  .header-h1 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .header-badge {
+    background: var(--yellow);
+    color: var(--green-dark);
+    border-radius: 8px;
+    padding: 10px 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .badge-score {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    display: block;
+  }
+
+  .badge-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 3px;
+    display: block;
+  }
+
+  .badge-cat {
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px 40px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--green-mid);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, var(--green-mid), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── SUMMARY ROW ── */
+  .summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .sum-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--green-mid);
+    text-align: center;
+  }
+
+  .sum-card.accent-yellow { border-top-color: var(--yellow); }
+  .sum-card.accent-blue   { border-top-color: var(--blue); }
+  .sum-card.accent-green  { border-top-color: var(--green-light); }
+
+  .sum-number {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+    display: block;
+  }
+
+  .sum-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ── STAKEHOLDER TABLE CARDS ── */
+  .stk-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .stk-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--green-mid);
+  }
+
+  .stk-card.c-blue   { border-left-color: var(--blue); }
+  .stk-card.c-coral  { border-left-color: var(--coral); }
+  .stk-card.c-green  { border-left-color: var(--green-light); }
+  .stk-card.c-purple { border-left-color: var(--purple); }
+  .stk-card.c-pink   { border-left-color: var(--pink); }
+  .stk-card.c-teal   { border-left-color: var(--teal); }
+  .stk-card.c-yellow { border-left-color: var(--yellow); }
+
+  .stk-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .stk-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stk-number {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .stk-score-wrap {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .stk-score {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+
+  .stk-cat {
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-top: 3px;
+    display: inline-block;
+  }
+
+  .cat-sb { background: #d4edda; color: #155724; }
+  .cat-b  { background: #d1ecf1; color: #0c5460; }
+  .cat-c  { background: #fff3cd; color: #856404; }
+  .cat-k  { background: #f8d7da; color: #721c24; }
+
+  /* Distribution bar */
+  .dist-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .dist-seg {
+    transition: width 0.3s;
+  }
+
+  .dist-seg.sb { background: var(--green-light); }
+  .dist-seg.b  { background: var(--blue); }
+  .dist-seg.c  { background: var(--yellow); }
+  .dist-seg.kb { background: var(--coral); }
+
+  .dist-legend {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .dist-item {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dist-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  .dist-dot.sb { background: var(--green-light); }
+  .dist-dot.b  { background: var(--blue); }
+  .dist-dot.c  { background: var(--yellow); }
+  .dist-dot.kb { background: var(--coral); }
+
+  .stk-tindak {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8e4db;
+    line-height: 1.45;
+  }
+
+  .stk-tindak strong {
+    color: var(--green-mid);
+    font-weight: 700;
+  }
+
+  /* ── COMPOSITE BAR ── */
+  .composite-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+  }
+
+  .comp-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .comp-bar-bg {
+    background: #e8e4db;
+    border-radius: 6px;
+    height: 28px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .comp-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(to right, var(--green-dark), var(--green-light));
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    justify-content: flex-end;
+    transition: width 0.5s ease;
+  }
+
+  .comp-bar-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .comp-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ── SCORE TABLE ── */
+  .score-table-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 28px;
+    overflow-x: auto;
+  }
+
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  .score-table th {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .score-table th:nth-child(n+4) { text-align: center; }
+
+  .score-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #f0ece3;
+    vertical-align: middle;
+  }
+
+  .score-table td:nth-child(n+4) { text-align: center; }
+
+  .score-table tr:last-child td { border-bottom: none; }
+  .score-table tr:hover td { background: #f7f4ee; }
+
+  .td-score {
+    font-weight: 700;
+    color: var(--green-dark);
+    font-size: 13px;
+  }
+
+  .td-mini-bar {
+    display: flex;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    width: 80px;
+    background: #e8e4db;
+  }
+
+  .td-mini-fill {
+    background: linear-gradient(to right, var(--green-dark), var(--green-light));
+    border-radius: 3px;
+    height: 100%;
+  }
+
+  /* ── RESPONDEN INFO ── */
+  .resp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .resp-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .resp-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .resp-icon.green { background: #e0f5ed; }
+  .resp-icon.blue  { background: #ddeeff; }
+  .resp-icon.yellow{ background: #fff3d0; }
+
+  .resp-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+
+  .resp-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 18px 32px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .footer strong { color: var(--white); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .header { flex-direction: column; }
+    .summary-row { grid-template-columns: 1fr 1fr; }
+    .stk-grid { grid-template-columns: 1fr; }
+    .resp-grid { grid-template-columns: 1fr 1fr; }
+    .footer { flex-direction: column; gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="header">
+  <div class="header-title">
+    <div class="header-eyebrow">Kepuasan Stakeholder · Tabel 2.7C LKPS</div>
+    <h1 class="header-h1">Kepuasan Stakeholder<br>Internal &amp; Eksternal</h1>
+    <div class="header-sub">Program Studi S2 Konservasi Biodiversitas Tropika</div>
+    <div class="header-sub">Departemen Konservasi Sumberdaya Hutan dan Ekowisata · IPB University</div>
+  </div>
+  <div class="header-badge">
+    <span class="badge-score">3,48</span>
+    <span class="badge-label">Rata-rata Skor</span>
+    <span class="badge-cat">Sangat Baik</span>
+  </div>
+  <!-- SVG leaf decoration -->
+  <svg class="header-leaf" width="280" height="280" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 10 C20 20, 5 50, 15 80 C25 110, 60 90, 70 65 C80 40, 70 15, 50 10Z" fill="white"/>
+    <path d="M50 10 C50 10, 50 80, 15 80" stroke="white" stroke-width="1.5" fill="none"/>
+    <path d="M50 30 C50 30, 35 55, 25 65" stroke="white" stroke-width="0.8" fill="none"/>
+    <path d="M50 45 C50 45, 60 60, 62 72" stroke="white" stroke-width="0.8" fill="none"/>
+    <path d="M50 20 C50 20, 65 40, 68 55" stroke="white" stroke-width="0.8" fill="none"/>
+  </svg>
+</header>
+
+<!-- ══ MAIN ══ -->
+<main class="main">
+
+  <!-- Ringkasan -->
+  <div class="section-label">Ringkasan Survei</div>
+  <div class="summary-row">
+    <div class="sum-card accent-yellow">
+      <span class="sum-number">7</span>
+      <div class="sum-desc">Kelompok Stakeholder</div>
+    </div>
+    <div class="sum-card accent-blue">
+      <span class="sum-number">191</span>
+      <div class="sum-desc">Total Responden (TS)</div>
+    </div>
+    <div class="sum-card accent-green">
+      <span class="sum-number">3,48</span>
+      <div class="sum-desc">Rata-rata Skor Keseluruhan</div>
+    </div>
+  </div>
+
+  <!-- Composite bar -->
+  <div class="composite-wrap">
+    <div class="comp-label">Indeks Kepuasan Rata-rata — semua stakeholder</div>
+    <div class="comp-bar-bg">
+      <div class="comp-bar-fill" style="width:87%">
+        <span class="comp-bar-num">3,48</span>
+      </div>
+    </div>
+    <div class="comp-scale">
+      <span>Kurang (1,00)</span>
+      <span>Cukup (1,75)</span>
+      <span>Baik (2,50)</span>
+      <span>Sangat Baik (3,25)</span>
+      <span>4,00</span>
+    </div>
+  </div>
+
+  <!-- Kartu per Stakeholder -->
+  <div class="section-label">Kepuasan per Kelompok Stakeholder</div>
+  <div class="stk-grid">
+
+    <!-- 1. Mahasiswa -->
+    <div class="stk-card c-blue">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Mahasiswa</div>
+          <div class="stk-number">67 responden (TS) · Keterwakilan 100%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,50</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:50%"></div>
+        <div class="dist-seg b"  style="width:50%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 50%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 50%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan kualitas layanan yang sudah baik serta melakukan evaluasi dan peningkatan layanan akademik dan fasilitas pembelajaran secara berkelanjutan.</div>
+    </div>
+
+    <!-- 2. Dosen -->
+    <div class="stk-card c-green">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Dosen</div>
+          <div class="stk-number">24 responden (TS) · Keterwakilan 100%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,59</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:66%"></div>
+        <div class="dist-seg b"  style="width:28%"></div>
+        <div class="dist-seg c"  style="width:5%"></div>
+        <div class="dist-seg kb" style="width:1%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 66%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 28%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 5%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 1%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Meningkatkan kualitas layanan akademik dan dukungan kegiatan tridharma melalui evaluasi berkala serta penguatan koordinasi dan fasilitas pendukung.</div>
+    </div>
+
+    <!-- 3. Tenaga Kependidikan -->
+    <div class="stk-card c-coral">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Tenaga Kependidikan</div>
+          <div class="stk-number">22 responden (TS) · Keterwakilan 100%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">2,99</div>
+          <div><span class="stk-cat cat-b">Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:21%"></div>
+        <div class="dist-seg b"  style="width:59%"></div>
+        <div class="dist-seg c"  style="width:18%"></div>
+        <div class="dist-seg kb" style="width:2%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 21%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 59%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 18%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 2%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan layanan yang sudah baik dan melakukan evaluasi serta peningkatan kualitas layanan secara berkelanjutan.</div>
+    </div>
+
+    <!-- 4. Mitra -->
+    <div class="stk-card c-yellow">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Mitra</div>
+          <div class="stk-number">41 responden (TS) · Keterwakilan 90%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,65</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:66%"></div>
+        <div class="dist-seg b"  style="width:33%"></div>
+        <div class="dist-seg c"  style="width:1%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 66%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 33%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 1%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan kualitas layanan yang sangat baik serta meningkatkan aspek yang masih dinilai cukup melalui evaluasi dan perbaikan berkelanjutan.</div>
+    </div>
+
+    <!-- 5. Lulusan -->
+    <div class="stk-card c-purple">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Lulusan <span style="font-size:11px;font-weight:400">(Alumni)</span></div>
+          <div class="stk-number">14 responden (TS) · Keterwakilan 100%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,34</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:33.93%"></div>
+        <div class="dist-seg b"  style="width:66.07%"></div>
+        <div class="dist-seg c"  style="width:0%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 33,93%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 66,07%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 0%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Mempertahankan kualitas layanan yang sudah baik serta melakukan evaluasi dan peningkatan layanan secara berkelanjutan.</div>
+    </div>
+
+    <!-- 6. Pengguna Lulusan -->
+    <div class="stk-card c-teal">
+      <div class="stk-header">
+        <div>
+          <div class="stk-name">Pengguna Lulusan</div>
+          <div class="stk-number">15 responden (TS) · Keterwakilan 79%</div>
+        </div>
+        <div class="stk-score-wrap">
+          <div class="stk-score">3,69</div>
+          <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+        </div>
+      </div>
+      <div class="dist-bar">
+        <div class="dist-seg sb" style="width:70%"></div>
+        <div class="dist-seg b"  style="width:29%"></div>
+        <div class="dist-seg c"  style="width:1%"></div>
+        <div class="dist-seg kb" style="width:0%"></div>
+      </div>
+      <div class="dist-legend">
+        <div class="dist-item"><span class="dist-dot sb"></span>SB 70%</div>
+        <div class="dist-item"><span class="dist-dot b"></span>B 29%</div>
+        <div class="dist-item"><span class="dist-dot c"></span>C 1%</div>
+        <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+      </div>
+      <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Melakukan evaluasi dan peningkatan berkelanjutan terhadap kualitas lulusan melalui perbaikan kurikulum, peningkatan softskill, dan penguatan kerja sama dengan pengguna.</div>
+    </div>
+
+  </div>
+
+  <!-- Masyarakat Penerima Manfaat (full width) -->
+  <div style="margin-bottom:28px">
+  <div class="stk-card c-pink" style="max-width:100%">
+    <div class="stk-header">
+      <div>
+        <div class="stk-name">Masyarakat Penerima Manfaat</div>
+        <div class="stk-number">9 responden (TS) · Keterwakilan 100%</div>
+      </div>
+      <div class="stk-score-wrap">
+        <div class="stk-score">3,63</div>
+        <div><span class="stk-cat cat-sb">Sangat Baik</span></div>
+      </div>
+    </div>
+    <div class="dist-bar">
+      <div class="dist-seg sb" style="width:67.1%"></div>
+      <div class="dist-seg b"  style="width:29.03%"></div>
+      <div class="dist-seg c"  style="width:3.87%"></div>
+      <div class="dist-seg kb" style="width:0%"></div>
+    </div>
+    <div class="dist-legend">
+      <div class="dist-item"><span class="dist-dot sb"></span>SB 67,10%</div>
+      <div class="dist-item"><span class="dist-dot b"></span>B 29,03%</div>
+      <div class="dist-item"><span class="dist-dot c"></span>C 3,87%</div>
+      <div class="dist-item"><span class="dist-dot kb"></span>KB 0%</div>
+    </div>
+    <div class="stk-tindak"><strong>Tindak Lanjut:</strong> Melakukan pendampingan berkelanjutan dan membangun jaringan alumni penerima manfaat untuk memastikan pengetahuan tetap diterapkan serta mendukung keberlanjutan dampak kegiatan melalui komunikasi rutin, panduan praktis, dan mekanisme feedback dua arah.</div>
+  </div>
+  </div>
+
+  <!-- Tabel Ringkasan -->
+  <div class="section-label">Tabel Ringkasan Skor</div>
+  <div class="score-table-wrap">
+    <table class="score-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Stakeholder</th>
+          <th>Responden (TS)</th>
+          <th>SB%</th>
+          <th>B%</th>
+          <th>C%</th>
+          <th>KB%</th>
+          <th>Skor</th>
+          <th>Kategori</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mahasiswa</td>
+          <td>67</td>
+          <td>50</td>
+          <td>50</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,50</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Dosen</td>
+          <td>24</td>
+          <td>66</td>
+          <td>28</td>
+          <td>5</td>
+          <td>1</td>
+          <td class="td-score">3,59</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tenaga Kependidikan</td>
+          <td>22</td>
+          <td>21</td>
+          <td>59</td>
+          <td>18</td>
+          <td>2</td>
+          <td class="td-score">2,99</td>
+          <td><span class="stk-cat cat-b">Baik</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Mitra</td>
+          <td>41</td>
+          <td>66</td>
+          <td>33</td>
+          <td>1</td>
+          <td>0</td>
+          <td class="td-score">3,65</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Lulusan</td>
+          <td>14</td>
+          <td>33,93</td>
+          <td>66,07</td>
+          <td>0</td>
+          <td>0</td>
+          <td class="td-score">3,34</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Pengguna Lulusan</td>
+          <td>15</td>
+          <td>70</td>
+          <td>29</td>
+          <td>1</td>
+          <td>0</td>
+          <td class="td-score">3,69</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Masyarakat Penerima Manfaat</td>
+          <td>9</td>
+          <td>67,10</td>
+          <td>29,03</td>
+          <td>3,87</td>
+          <td>0</td>
+          <td class="td-score">3,63</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+        <tr style="background:#f0ece3">
+          <td colspan="6" style="font-weight:700;text-align:right">Rata-rata Keseluruhan</td>
+          <td></td>
+          <td class="td-score" style="font-size:15px">3,48</td>
+          <td><span class="stk-cat cat-sb">Sangat Baik</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Catatan Metodologi -->
+  <div class="section-label">Catatan Metodologi</div>
+  <div style="background:var(--white);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow);font-size:12px;color:var(--text-muted);line-height:1.6">
+    <p>• Skor dihitung menggunakan skala Likert 4 tingkat: <strong>Sangat Baik (SB) = 4, Baik (B) = 3, Cukup (C) = 2, Kurang (KB) = 1</strong>.</p>
+    <p>• Kategori skor: <strong>Sangat Baik</strong> (3,25–4,00), <strong>Baik</strong> (2,50–3,24), <strong>Cukup</strong> (1,75–2,49), <strong>Kurang</strong> (1,00–1,74).</p>
+    <p>• Rata-rata keseluruhan dihitung dari rata-rata aritmetika seluruh skor kelompok stakeholder: (3,50 + 3,59 + 2,99 + 3,65 + 3,34 + 3,69 + 3,63) ÷ 7 = <strong>3,48</strong>.</p>
+    <p>• Data distribusi persentase (SB/B/C/KB) diambil langsung dari Tabel 2.7C LKPS sebagaimana dilaporkan oleh pengusul program studi.</p>
+    <p>• Skor Lulusan menggunakan nilai 3,3393 (dibulatkan menjadi 3,34) sesuai data LKPS.</p>
+    <p>• Survei dilaksanakan pada Tahun Survei (TS) 2024/2025. Instrumen tersedia untuk semua kelompok stakeholder.</p>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div>
+    <strong>Program Studi S2 Konservasi Biodiversitas Tropika</strong><br>    Departemen Konservasi Sumberdaya Hutan dan Ekowisata ·<br>
+    Fakultas Kehutanan dan Lingkungan · IPB University
+  </div>
+  <div style="text-align:right">
+    Sumber: Tabel 2.7C LKPS · TS 2024/2025<br>
+    7 Kelompok Stakeholder · 191 Total Responden (TS)
+  </div>
+</footer>
+
+</body>
+</html>
