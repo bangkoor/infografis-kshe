@@ -213,11 +213,18 @@
     color: var(--text);
   }
 
-  .stk-number {
+.stk-number {
     font-size: 11px;
     color: var(--text-muted);
-    margin-top: 2px;
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
   }
+  .resp-ts { white-space: nowrap; }
+  .resp-ts strong { color: var(--green-dark); font-weight: 700; }
+  .resp-sep { color: #ccc; }
 
   .stk-score-wrap {
     text-align: right;
@@ -489,7 +496,7 @@
 <!-- ══ HEADER ══ -->
 <header class="header">
   <div class="header-title">
-    <div class="header-eyebrow">Kepuasan Stakeholder · Tabel 2.7C LKPS</div>
+    <div class="header-eyebrow">Kepuasan Stakeholder · Tabel 2.7C LKPS · TS 2024/2025</div>
     <h1 class="header-h1">Kepuasan Stakeholder<br>Internal &amp; Eksternal</h1>
     <div class="header-sub">Program Studi S2 Konservasi Biodiversitas Tropika</div>
     <div class="header-sub">Departemen Konservasi Sumberdaya Hutan dan Ekowisata · IPB University</div>
@@ -521,7 +528,7 @@
     </div>
     <div class="sum-card accent-blue">
       <span class="sum-number">191</span>
-      <div class="sum-desc">Total Responden (TS)</div>
+      <div class="sum-desc">Total Responden TS 2024/2025</div>
     </div>
     <div class="sum-card accent-green">
       <span class="sum-number">3,48</span>
@@ -555,7 +562,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Mahasiswa</div>
-          <div class="stk-number">67 responden (TS) · Keterwakilan 100%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>67</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>76</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>76</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 100%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">3,50</div>
@@ -582,7 +589,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Dosen</div>
-          <div class="stk-number">24 responden (TS) · Keterwakilan 100%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>24</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>24</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>24</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 100%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">3,59</div>
@@ -609,7 +616,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Tenaga Kependidikan</div>
-          <div class="stk-number">22 responden (TS) · Keterwakilan 100%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>22</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>22</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>22</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 100%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">2,99</div>
@@ -636,7 +643,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Mitra</div>
-          <div class="stk-number">41 responden (TS) · Keterwakilan 90%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>41</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>30</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>27</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 90%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">3,65</div>
@@ -663,7 +670,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Lulusan <span style="font-size:11px;font-weight:400">(Alumni)</span></div>
-          <div class="stk-number">14 responden (TS) · Keterwakilan 100%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>14</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>22</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>20</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 100%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">3,34</div>
@@ -690,7 +697,7 @@
       <div class="stk-header">
         <div>
           <div class="stk-name">Pengguna Lulusan</div>
-          <div class="stk-number">15 responden (TS) · Keterwakilan 79%</div>
+          <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>15</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>25</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>26</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 79%</span></div>
         </div>
         <div class="stk-score-wrap">
           <div class="stk-score">3,69</div>
@@ -720,7 +727,7 @@
     <div class="stk-header">
       <div>
         <div class="stk-name">Masyarakat Penerima Manfaat</div>
-        <div class="stk-number">9 responden (TS) · Keterwakilan 100%</div>
+        <div class="stk-number"><span class="resp-ts">TS 2024/2025: <strong>9</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-1 2023/2024: <strong>1</strong></span><span class="resp-sep">·</span><span class="resp-ts">TS-2 2022/2023: <strong>1</strong></span><span class="resp-sep">·</span><span class="resp-ts">Keterwakilan 100%</span></div>
       </div>
       <div class="stk-score-wrap">
         <div class="stk-score">3,63</div>
@@ -751,7 +758,7 @@
         <tr>
           <th>No</th>
           <th>Stakeholder</th>
-          <th>Responden (TS)</th>
+          <th>Responden TS 2024/2025</th>
           <th>SB%</th>
           <th>B%</th>
           <th>C%</th>
@@ -856,7 +863,7 @@
     <p>• Rata-rata keseluruhan dihitung dari rata-rata aritmetika seluruh skor kelompok stakeholder: (3,50 + 3,59 + 2,99 + 3,65 + 3,34 + 3,69 + 3,63) ÷ 7 = <strong>3,48</strong>.</p>
     <p>• Data distribusi persentase (SB/B/C/KB) diambil langsung dari Tabel 2.7C LKPS sebagaimana dilaporkan oleh pengusul program studi.</p>
     <p>• Skor Lulusan menggunakan nilai 3,3393 (dibulatkan menjadi 3,34) sesuai data LKPS.</p>
-    <p>• Survei dilaksanakan pada Tahun Survei (TS) 2024/2025. Instrumen tersedia untuk semua kelompok stakeholder.</p>
+    <p>• Survei dilaksanakan pada Tahun Survei (TS) 2024/2025, TS-1 2023/2024, TS-2 2022/2023. Instrumen tersedia untuk semua kelompok stakeholder.</p>
   </div>
 
 </main>
@@ -869,7 +876,7 @@
   </div>
   <div style="text-align:right">
     Sumber: Tabel 2.7C LKPS · TS 2024/2025<br>
-    7 Kelompok Stakeholder · 191 Total Responden (TS)
+    7 Kelompok Stakeholder · 191 Total Responden TS 2024/2025
   </div>
 </footer>
 
